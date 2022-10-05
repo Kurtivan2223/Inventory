@@ -21,6 +21,7 @@ struct Inventory
 {
     int brandID;
     char brandName[20];
+    int availableNumberOfSizes;
     struct Sizes quantity[20];
 };
 
@@ -28,6 +29,7 @@ void Loading();
 void Menu();
 void AddItems();
 void DeleteItem();
+void Records();
 void Exit();
 
 int main(int argc, char** argv[])
@@ -63,7 +65,7 @@ void Menu()
     {
         system("cls");
         printf("********** Main Menu **********");
-        printf("\n\n[1] Add Item\n[2] Delete Item\n[3] Exit\n: ");
+        printf("\n\n[1] Add Item\n[2] Delete Item\n[3] Show Records\n[4] Exit\n: ");
         scanf("%d", &option);
         fflush(stdin);
 
@@ -80,6 +82,11 @@ void Menu()
             DeleteItem();
             break;
         case 3:
+            system("cls");
+            Sleep(1000);
+            Records();
+            break;
+        case 4:
             system("cls");
             Sleep(1000);
             Exit();
@@ -99,26 +106,40 @@ void Menu()
 void AddItems()
 {
     struct Inventory item[20];
-    int i, j, n;
-
+    int i, j, k, n;
+    char temp[20];
+	
     printf("Enter Number of Shoe Brands to be added: ");
     scanf("%d", &n);
     fflush(stdin);
 
-    int m[n];
-
     for(i = 0; i < n; i++)
     {
+    	system("cls");
         fflush(stdin);
-        item[i].brandID = i + 1;
         printf("Brand name: ");
-        scanf("%s", item[i].brandName);
-
-        fflush(stdin);
+        scanf("%s", temp);
+        for(k = 0; k < n; k++)
+        {
+        	if(!strcmp(toupper(item[k].brandName), toupper(temp)))
+			{
+				printf("Brand Already Exists!");
+				Sleep(5000);
+				fflush(stdin);
+				system("cls");
+				AddItems();
+			}
+		}
+		
+		item[i].brandID = i + 1;
+//		item[i].brandName = temp;
+		strcpy(item[i].brandName, temp);
+		
+		fflush(stdin);
         printf("Enter Number of Sizes Available for %s: ", item[i].brandName);
-        scanf("%d", &m[i]);
+        scanf("%d", &item[i].availableNumberOfSizes);
         
-        for(j = 0; j < m[i]; j++)
+        for(j = 0; j < item[i].availableNumberOfSizes; j++)
         {
             fflush(stdin);
             printf("Enter Shoe Size %d: ", j + 1);
@@ -129,21 +150,6 @@ void AddItems()
             scanf("%d", &item[i].quantity[j].brandQuantity);
         }
     }
-
-    printf(" ***** INVENTORY *****\n");
-    printf("------------------------------------------------------------------\n");
-    printf("ID | NAME | Size | QUANTITY \n");
-    printf("------------------------------------------------------------------\n");
-    
-    for(i = 0; i < n; i++)
-    {
-        printf("%-4d %-15s\n", item[i].brandID, item[i].brandName);
-        for(j = 0; j < m[i]; j++)
-        {
-            if(item[i].quantity[j].brandSize != '\0')
-                printf("\t\t%-5d %-5d\n", item[i].quantity[j].brandSize, item[i].quantity[j].brandQuantity);
-        }
-    }
     
     system("pause");
 }
@@ -151,6 +157,33 @@ void AddItems()
 void DeleteItem()
 {
 	Exit();
+}
+
+void Records()
+{
+	int i, j;
+	struct Inventory item[20];
+	
+	printf(" ***** INVENTORY *****\n");
+    printf("------------------------------------------------------------------\n");
+    printf("ID\t|\tNAME\t|\tSize\t|\tQUANTITY \n");
+    printf("------------------------------------------------------------------\n");
+    
+    for(i = 0; i < 20; i++)
+    {
+    	if(item[i].brandID != '\0')
+    	{
+    		printf("%-4d %-15s\n", item[i].brandID, item[i].brandName);
+	        for(j = 0; j < item[i].availableNumberOfSizes; j++)
+	        {
+	            if(item[i].quantity[j].brandSize != '\0')
+	                printf("\t\t%-5d %-5d\n", item[i].quantity[j].brandSize, item[i].quantity[j].brandQuantity);
+	        }
+	        system("pause");
+		}
+		fflush(stdout);
+		Menu();
+    }
 }
 
 void Exit()
