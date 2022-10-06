@@ -289,24 +289,96 @@ void DeleteItem()
 
 		if(found == true)
 		{
+			// for(j = location - 1; j < tempBrand; j++)
+			// {
+			// 	brandID[j] = brandID[j + 1];
+			// 	strcpy(brandName[j], brandName[j + 1]);
+			// 	wsize_5_qty[j] = wsize_5_qty[j + 1];
+			// 	wsize_6_qty[j] = wsize_6_qty[j + 1];
+			// 	wsize_7_qty[j] = wsize_7_qty[j + 1];
+			// 	wsize_8_qty[j] = wsize_8_qty[j + 1];
+			// 	wsize_9_qty[j] = wsize_9_qty[j + 1];
+			// 	wsize_10_qty[j] = wsize_10_qty[j + 1];
+			// 	wsize_11_qty[j] = wsize_11_qty[j + 1];
+			// 	wsize_12_qty[j] = wsize_12_qty[j + 1];
+			// 	msize_4_qty[j] = msize_4_qty[j + 1];
+			// 	msize_5_qty[j] = msize_5_qty[j + 1];
+			// 	msize_6_qty[j] = msize_6_qty[j + 1];
+			// 	msize_7_qty[j] = msize_7_qty[j + 1];
+			// 	msize_8_qty[j] = msize_8_qty[j + 1];
+			// 	msize_9_qty[j] = msize_9_qty[j + 1];
+			// 	msize_10_qty[j] = msize_10_qty[j + 1];
+			// }
 			for(j = location - 1; j < tempBrand; j++)
 			{
 				brandID[j] = brandID[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				strcpy(brandName[j], brandName[j + 1]);
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_5_qty[j] = wsize_5_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_6_qty[j] = wsize_6_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_7_qty[j] = wsize_7_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_8_qty[j] = wsize_8_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_9_qty[j] = wsize_9_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_10_qty[j] = wsize_10_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_11_qty[j] = wsize_11_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
+				wsize_11_qty[j] = wsize_11_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				wsize_12_qty[j] = wsize_12_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				msize_4_qty[j] = msize_4_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				msize_5_qty[j] = msize_5_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				msize_6_qty[j] = msize_6_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				msize_7_qty[j] = msize_7_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				msize_8_qty[j] = msize_8_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				msize_9_qty[j] = msize_9_qty[j + 1];
+			}
+			for(j = location - 1; j < tempBrand; j++)
+			{
 				msize_10_qty[j] = msize_10_qty[j + 1];
 			}
 
