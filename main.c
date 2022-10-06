@@ -1,7 +1,3 @@
-#ifdef _WIN32
-#include <windows.h>
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,7 +10,6 @@
 #define EXIT_SUCCESS 0
 
 //Global Variables
-int ID;
 int brandID[20];
 char brandName[20][20];
 
@@ -47,6 +42,8 @@ void searchMenu(); //pending
 void Search(char* brandString); // done
 void ReadTxtFile(); // done
 // void WriteFile(); //pending
+int compare(char brand[][20], char stringName[]);
+int locator(char brand[][20], char stringName[]);
 void Exit(); // done
 
 //main function
@@ -128,10 +125,15 @@ void Menu()
 //Add Item Screen
 void AddItems()
 {
-	int i, k, n, tempID;
+	int i, k, n, tempID, count;
+	int size = sizeof(brandID) / sizeof(brandID[0]);
     char temp[20];
 
     char option = 'Y';
+
+	for(i = 0; i < size; i++)
+		if(brandID[i] != '\0')
+			count++;
 
    	do
    	{
@@ -140,17 +142,16 @@ void AddItems()
 	    scanf("%d", &n);
 	    fflush(stdin);
 
-	    ID = n;
-
-	    for(i = 0; i < ID; i++)
+	    for(i = count; i < count + n; i++)
 	    {
+ids:
 	    	system("cls");
 
 	    	fflush(stdin);
 	        printf("Brand ID: ");
 	        scanf("%d", &tempID);
 
-	        for(k = 0; k < ID; k++)
+	        for(k = 0; k < n; k++)
 	        {
 	        	if(brandID[k] == tempID)
 				{
@@ -158,24 +159,21 @@ void AddItems()
 					Sleep(5000);
 					fflush(stdin);
 					system("cls");
-					AddItems();
+					goto ids;
 				}
 			}
-
+names;
 	        fflush(stdin);
 	        printf("Brand name: ");
 	        scanf("%s", temp);
 
-	        for(k = 0; k < n; k++)
-	        {
-	        	if(strcmp(brandName[i], temp) == 0)
-				{
-					printf("Brand Already Exists!");
-					Sleep(5000);
-					fflush(stdin);
-					system("cls");
-					AddItems();
-				}
+			if(compare(brandName, temp) == true)
+			{
+				printf("Brand Already Exists!");
+				Sleep(5000);
+				fflush(stdin);
+				system("cls");
+				goto names;
 			}
 
 			brandID[i] = tempID;
@@ -263,130 +261,60 @@ void DeleteItem()
 {
 	char option = 'Y';
 	char temp[20];
-	int i, location, j;
-	int tempBrand = sizeof(brandID) / sizeof(brandID[0]);
+	int i, location = 0, j, count;
+	int size = sizeof(brandID) / sizeof(brandID[0]);
 	int found = false;
+
+	for(i = 0; i < size; i++);
+		if(brandID[i] != '\0')
+			count++;
 
 	do
 	{
+temps:
+		fflush(stdin);
 		printf("Enter Brand Name You want to Delete: ");
 		scanf("%s", temp);
-		fflush(stdin);
-		
-		for(i = 0; i < tempBrand; i++)
+
+		if(compare(brandName, temp) == true)
 		{
-			if(strcmp(brandName[i], temp) == 0)
-			{
-				found = true;
-				location = i + 1;
-			}
-			else
-			{
-				found = false;
-				location = 0;
-			}
+			found = true;
+			location = locator(brandName, temp);
 		}
 
 		if(found == true)
 		{
-			// for(j = location - 1; j < tempBrand; j++)
-			// {
-			// 	brandID[j] = brandID[j + 1];
-			// 	strcpy(brandName[j], brandName[j + 1]);
-			// 	wsize_5_qty[j] = wsize_5_qty[j + 1];
-			// 	wsize_6_qty[j] = wsize_6_qty[j + 1];
-			// 	wsize_7_qty[j] = wsize_7_qty[j + 1];
-			// 	wsize_8_qty[j] = wsize_8_qty[j + 1];
-			// 	wsize_9_qty[j] = wsize_9_qty[j + 1];
-			// 	wsize_10_qty[j] = wsize_10_qty[j + 1];
-			// 	wsize_11_qty[j] = wsize_11_qty[j + 1];
-			// 	wsize_12_qty[j] = wsize_12_qty[j + 1];
-			// 	msize_4_qty[j] = msize_4_qty[j + 1];
-			// 	msize_5_qty[j] = msize_5_qty[j + 1];
-			// 	msize_6_qty[j] = msize_6_qty[j + 1];
-			// 	msize_7_qty[j] = msize_7_qty[j + 1];
-			// 	msize_8_qty[j] = msize_8_qty[j + 1];
-			// 	msize_9_qty[j] = msize_9_qty[j + 1];
-			// 	msize_10_qty[j] = msize_10_qty[j + 1];
-			// }
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				brandID[j] = brandID[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				strcpy(brandName[j], brandName[j + 1]);
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_5_qty[j] = wsize_5_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_6_qty[j] = wsize_6_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_7_qty[j] = wsize_7_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_8_qty[j] = wsize_8_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_9_qty[j] = wsize_9_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_10_qty[j] = wsize_10_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_11_qty[j] = wsize_11_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_11_qty[j] = wsize_11_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				wsize_12_qty[j] = wsize_12_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				msize_4_qty[j] = msize_4_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				msize_5_qty[j] = msize_5_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				msize_6_qty[j] = msize_6_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				msize_7_qty[j] = msize_7_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				msize_8_qty[j] = msize_8_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				msize_9_qty[j] = msize_9_qty[j + 1];
-			}
-			for(j = location - 1; j < tempBrand; j++)
-			{
-				msize_10_qty[j] = msize_10_qty[j + 1];
-			}
+			 for(j = location - 1; j < count; j++)
+			 {
+			 	brandID[j] = brandID[j + 1];
+			 	wsize_5_qty[j] = wsize_5_qty[j + 1];
+			 	wsize_6_qty[j] = wsize_6_qty[j + 1];
+			 	wsize_7_qty[j] = wsize_7_qty[j + 1];
+			 	wsize_8_qty[j] = wsize_8_qty[j + 1];
+			 	wsize_9_qty[j] = wsize_9_qty[j + 1];
+			 	wsize_10_qty[j] = wsize_10_qty[j + 1];
+			 	wsize_11_qty[j] = wsize_11_qty[j + 1];
+			 	wsize_12_qty[j] = wsize_12_qty[j + 1];
+			 	msize_4_qty[j] = msize_4_qty[j + 1];
+			 	msize_5_qty[j] = msize_5_qty[j + 1];
+			 	msize_6_qty[j] = msize_6_qty[j + 1];
+			 	msize_7_qty[j] = msize_7_qty[j + 1];
+			 	msize_8_qty[j] = msize_8_qty[j + 1];
+			 	msize_9_qty[j] = msize_9_qty[j + 1];
+			 	msize_10_qty[j] = msize_10_qty[j + 1];
+			 }
+			
+			memmove(brandName[location - 1], brandName[location], (size - location) * sizeof(brandName[0]));
+			memset(brandName[count - 1], 0, sizeof(brandName[0]));
 
 			printf("Successfully Deleted %s records in the Inventory!", temp);
 		}
 		else
 		{
 			printf("There is no such Brand in the Inventory!");
+			Sleep(5000);
+			system("cls");
+			goto temps;
 		}
 
 		scanf("%c", &option);
@@ -402,9 +330,13 @@ void DeleteItem()
 
 void Records()
 {
-    int option, i, k, j, tempBrand;
+    int option, i, k, j, size, count;
     int m = 4, w = 5;
-	tempBrand = sizeof(brandID) / sizeof(brandID[0]);
+	size = sizeof(brandID) / sizeof(brandID[0]);
+	
+	for(i = 0; i < size; i++)
+		if(brandID[i] != '\0')
+			count++;
 
     do
     {
@@ -424,29 +356,26 @@ void Records()
 			printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
 			printf("-------------------------------------------------------------------------------------\n");
 	
-			for(i = 0; i < tempBrand; i++)
+			for(i = 0; i < count; i++)
 			{
-				if(brandID[i] != '\0')
-				{
-					printf("%-4d %-15s\n", brandID[i], brandName[i]);
+				printf("%-4d %-15s\n", brandID[i], brandName[i]);
+
+				printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
 	
-					printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
-					printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
-					printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
-					printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
-					printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
-					printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
-					printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
-		
-					printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
-					printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
-					printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
-					printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
-					printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
-					printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
-					printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
-					printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
-				}
+				printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
 			}
 			system("pause");
 			Records();
@@ -510,24 +439,13 @@ void Search(char* brandString)
 {
 	
 	int i;
-	int size = sizeof(brandID) / sizeof(brandID[0]);
-	//bool
 	int found = false;
-	
 	int location;
-	
-	for(i = 0; i < size; i++)
+
+	if(compare(brandName, temp) == true)
 	{
-		if(strcmp(brandName[i], brandString) == 0)
-		{
-			found = true;
-			location = i + 1;
-		}
-		else
-		{
-			found = false;
-			location = 0;
-		}
+		found = true;
+		location = locator(brandName, temp);
 	}
 	
 	
@@ -594,6 +512,38 @@ void ReadTxtFile()
 // {
 // 	//something ..
 // }
+
+int compare(char brand[][20], char stringName[])
+{
+	int size = sizeof(stringName) / sizeof(stringName[0]);
+	int i, same = false, count;
+	
+	for(i = 0; i < size; i++)
+		if(brand[i] != '\0')
+			count++;
+				
+	for(i = 0; i < count; i++)
+		if(strcmp(tolower(brand[i]), tolower(stringName)) == false)
+			same = true;
+
+	return same;
+}
+
+int locator(char brand[][20], char stringName[])
+{
+	int size = sizeof(stringName) / sizeof(stringName[0]);
+	int i, location = 0, count;
+	
+	for(i = 0; i < size; i++)
+		if(brand[i] != '\0')
+			count++;
+				
+	for(i = 0; i < count; i++)
+		if(strcmp(tolower(brand[i]), tolower(stringName)) == false)
+			location = i + 1;
+
+	return location;
+}
 
 void Exit()
 {
