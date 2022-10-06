@@ -119,21 +119,21 @@ void Menu()
 
 void AddItems()
 {
-	int i, n, tempID, cs = 0;
+	int i, n, tempID;
     char temp[20];
 
     char option = 'Y';
 
    	do
    	{
-   		ID = cs++;
-
    		fflush(stdin);
 	    printf("Enter Number of Shoe Brands to be added: ");
 	    scanf("%d", &n);
 	    fflush(stdin);
 
-	    for(i = 0; i < n; i++)
+	    ID = n;
+
+	    for(i = 0; i < ID; i++)
 	    {
 	    	system("cls");
 
@@ -141,7 +141,7 @@ void AddItems()
 	        printf("Brand ID: ");
 	        scanf("%d", &tempID);
 
-	        for(k = 0; k < n; k++)
+	        for(k = 0; k < ID; k++)
 	        {
 	        	if(!strcmp(toupper(brandName[i]), toupper(temp)))
 				{
@@ -256,15 +256,96 @@ void DeleteItem()
 
 void Records()
 {
-	int i, j;
-	struct Inventory item[20];
-	
-	printf(" ***** INVENTORY *****\n");
-    printf("------------------------------------------------------------------\n");
-    printf("ID\t|\tNAME\t|\tSize\t|\tQUANTITY \n");
-    printf("------------------------------------------------------------------\n");
-    
-    //
+    int option, i, k, j;
+    int m = 4, w = 5;
+
+    do
+    {
+        system("cls");
+        printf("********** Main Menu **********");
+        printf("\n\n[1] Show Current Records\n[2] Show All Records\n[3] Menu\n: ");
+        scanf("%d", &option);
+        fflush(stdin);
+
+        switch(option)
+        {
+        case 1:
+            system("cls");
+            Sleep(1000);
+            printf(" ***** INVENTORY *****\n");
+            printf("------------------------------------------------------------------\n");
+    		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
+   			printf("------------------------------------------------------------------\n");
+
+   			int wsize_5_qty[20];
+			int wsize_6_qty[20];
+			int wsize_7_qty[20];
+			int wsize_8_qty[20];
+			int wsize_9_qty[20];
+			int wsize_10_qty[20];
+			int wsize_11_qty[20];
+			int wsize_12_qty[20];
+
+			//US size Mens
+			int msize_4_qty[20];
+			int msize_5_qty[20];
+			int msize_6_qty[20];
+			int msize_7_qty[20];
+			int msize_8_qty[20];
+			int msize_9_qty[20];
+			int msize_10_qty[20];
+
+   			int tempBrand = sizeof(brandID) / sizeof(brandID[0]);
+
+   			for(i = 0; i < tempBrand; i++)
+   			{
+   				printf("%-4d %-15s\n", brandID[i], brandName[i]);
+   				for(j = 0; j < 7; j++)
+   				{
+   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_4_qty[i]);
+   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_5_qty[i]);
+   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_6_qty[i]);
+   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_7_qty[i]);
+   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_8_qty[i]);
+   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_9_qty[i]);
+   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_10_qty[i]);
+   				}
+   				for(j = 0; j < 9; j++)
+   				{
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_5_qty[i]);
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_6_qty[i]);
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_7_qty[i]);
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_8_qty[i]);
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_9_qty[i]);
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_10_qty[i]);
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_11_qty[i]);
+   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_12_qty[i]);
+   				}
+   			}
+   			system("pause");
+            Records();
+            break;
+        case 2:
+            system("cls");
+            Sleep(1000);
+            ReadFile();
+            break;
+        case 3:
+            system("cls");
+            Sleep(1000);
+            Menu();
+            break;
+        default:
+            system("cls");
+            printf("There is no such Option!\n");
+            for(k = 0; k < 5; k++)
+            {
+                printf("Please try again in \r%d", k + 1);
+                Sleep(5000);
+            }
+        }
+    }
+    while(option != 3);
 }
 
 void Search()
@@ -287,6 +368,9 @@ void ReadFile()
 	}
 
 	fclose(fileptr);
+
+	System("pause");
+	Records();
 }
 
 void WriteFile()
