@@ -243,11 +243,12 @@ void AddItems()
 			printf("Enter Quantity for Men Size 10: ");
 			scanf("%d", &msize_10_qty[i]);
 	    }
-
+	    
+		fflush(stdin);
 	    printf("\n\n");
 	    printf("Do you want to Retry? [Y]es|[N]o: ");
 	    scanf("%c", &option);
-
+		fflush(stdin);
 
 	    if(option == 'N' or option == 'n')
 	    {
