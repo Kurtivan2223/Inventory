@@ -282,27 +282,23 @@ void Records()
    			for(i = 0; i < tempBrand; i++)
    			{
    				printf("%-4d %-15s\n", brandID[i], brandName[i]);
-   				for(j = 0; j < 7; j++)
-   				{
-   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_4_qty[i]);
-   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_5_qty[i]);
-   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_6_qty[i]);
-   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_7_qty[i]);
-   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_8_qty[i]);
-   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_9_qty[i]);
-   					printf("\t\tMen: %-5d %-5d\n", i + m, msize_10_qty[i]);
-   				}
-   				for(j = 0; j < 9; j++)
-   				{
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_5_qty[i]);
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_6_qty[i]);
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_7_qty[i]);
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_8_qty[i]);
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_9_qty[i]);
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_10_qty[i]);
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_11_qty[i]);
-   					printf("\t\tWomen: %-5d %-5d\n", i + w, wsize_12_qty[i]);
-   				}
+
+				printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
+				printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
+
+				printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
+				printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
    			}
    			system("pause");
             Records();
