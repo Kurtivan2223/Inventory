@@ -277,24 +277,6 @@ void Records()
     		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
    			printf("------------------------------------------------------------------\n");
 
-   			int wsize_5_qty[20];
-			int wsize_6_qty[20];
-			int wsize_7_qty[20];
-			int wsize_8_qty[20];
-			int wsize_9_qty[20];
-			int wsize_10_qty[20];
-			int wsize_11_qty[20];
-			int wsize_12_qty[20];
-
-			//US size Mens
-			int msize_4_qty[20];
-			int msize_5_qty[20];
-			int msize_6_qty[20];
-			int msize_7_qty[20];
-			int msize_8_qty[20];
-			int msize_9_qty[20];
-			int msize_10_qty[20];
-
    			int tempBrand = sizeof(brandID) / sizeof(brandID[0]);
 
    			for(i = 0; i < tempBrand; i++)
@@ -350,7 +332,7 @@ void Records()
 
 void Search()
 {
-	//
+	int i;
 }
 
 void ReadFile()
