@@ -274,7 +274,19 @@ void Search()
 
 void ReadFile()
 {
-	//
+	char buffer[500];
+
+	FILE fileptr = fopen('Logs\\records.txt', 'r');
+
+	if(fileptr == NULL)
+		printf("There is no Records");
+
+	while(fgets(buffer, sizeof(buffer), fileptr))
+	{
+		printf("%s", buffer);
+	}
+
+	fclose(fileptr);
 }
 
 void WriteFile()
