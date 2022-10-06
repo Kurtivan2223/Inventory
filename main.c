@@ -13,7 +13,7 @@
 
 int ID;
 int brandID[20];
-char brandName[20];
+char brandName[20][20];
 
 //US size Womens
 int wsize_5_qty[20];
