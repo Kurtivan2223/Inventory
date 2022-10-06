@@ -45,7 +45,7 @@ void DeleteItem(); // done
 void Records(); // done
 void searchMenu(); //pending
 void Search(char* brandString); // done
-// void ReadFile(); // done
+void ReadTxtFile(); // done
 // void WriteFile(); //pending
 void Exit(); // done
 
@@ -168,7 +168,7 @@ void AddItems()
 
 	        for(k = 0; k < n; k++)
 	        {
-	        	if(strcmp(toupper(brandName[i]), toupper(temp)) == 0)
+	        	if(strcmp(brandName[i], temp) == 0)
 				{
 					printf("Brand Already Exists!");
 					Sleep(5000);
@@ -383,7 +383,7 @@ void Records()
         case 2:
 			system("cls");
 			Sleep(1000);
-			//ReadFile();
+			ReadTxtFile();
 			Exit();
 			break;
 		case 3:
@@ -491,25 +491,29 @@ void Search(char* brandString)
 }
 
 
-// void ReadFile()
-// {
-// 	char buffer[500];
+void ReadTxtFile()
+{
+	char buffer;
 
-// 	FILE fileptr = fopen('Logs\\records.txt', 'r');
+	FILE* fileptr;
+	fileptr = fopen("Logs\\records.txt", "r");
 
-// 	if(fileptr == NULL)
-// 		printf("There is no Records");
+	if(fileptr == NULL)
+		printf("There is no Records!");
 
-// 	while(fgets(buffer, sizeof(buffer), fileptr))
-// 	{
-// 		printf("%s", buffer);
-// 	}
+	do
+	{
+		buffer = fgetc(fileptr);
+		printf("%c", buffer);
+	}
+	while(buffer != EOF);
 
-// 	fclose(fileptr);
+	fclose(fileptr);
 
-// 	System("pause");
-// 	Records();
-// }
+	system("pause");
+	
+	Records();
+}
 
 // void WriteFile()
 // {
