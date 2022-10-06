@@ -11,30 +11,44 @@
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
 
-struct Sizes
-{
-    int brandSize;
-    int brandQuantity;
-};
+int ID;
+int brandID[20];
+char brandName[20];
 
-struct Inventory
-{
-    int brandID;
-    char brandName[20];
-    int availableNumberOfSizes;
-    struct Sizes quantity[20];
-};
+//US size Womens
+int wsize_5_qty[20];
+int wsize_6_qty[20];
+int wsize_7_qty[20];
+int wsize_8_qty[20];
+int wsize_9_qty[20];
+int wsize_10_qty[20];
+int wsize_11_qty[20];
+int wsize_12_qty[20];
+
+//US size Mens
+int msize_4_qty[20];
+int msize_5_qty[20];
+int msize_6_qty[20];
+int msize_7_qty[20];
+int msize_8_qty[20];
+int msize_9_qty[20];
+int msize_10_qty[20];
 
 void Loading();
 void Menu();
 void AddItems();
 void DeleteItem();
 void Records();
+void Search();
+void ReadFile();
+void WriteFile();
 void Exit();
 
 int main(int argc, char** argv[])
 {
-    Loading();
+	Loading();
+
+	return 0;
 }
 
 void Loading()
@@ -105,58 +119,139 @@ void Menu()
 
 void AddItems()
 {
-    struct Inventory item[20];
-    int i, j, k, n;
+	int i, n, tempID, cs = 0;
     char temp[20];
-	
-    printf("Enter Number of Shoe Brands to be added: ");
-    scanf("%d", &n);
-    fflush(stdin);
 
-    for(i = 0; i < n; i++)
-    {
-    	system("cls");
-        fflush(stdin);
-        printf("Brand name: ");
-        scanf("%s", temp);
-        for(k = 0; k < n; k++)
-        {
-        	if(!strcmp(toupper(item[k].brandName), toupper(temp)))
-			{
-				printf("Brand Already Exists!");
-				Sleep(5000);
-				fflush(stdin);
-				system("cls");
-				AddItems();
+    char option = 'Y';
+
+   	do
+   	{
+   		ID = cs++;
+
+   		fflush(stdin);
+	    printf("Enter Number of Shoe Brands to be added: ");
+	    scanf("%d", &n);
+	    fflush(stdin);
+
+	    for(i = 0; i < n; i++)
+	    {
+	    	system("cls");
+
+	    	fflush(stdin);
+	        printf("Brand ID: ");
+	        scanf("%d", &tempID);
+
+	        for(k = 0; k < n; k++)
+	        {
+	        	if(!strcmp(toupper(brandName[i]), toupper(temp)))
+				{
+					printf("Brand Already Exists!");
+					Sleep(5000);
+					fflush(stdin);
+					system("cls");
+					AddItems();
+				}
 			}
-		}
-		
-		item[i].brandID = i + 1;
-//		item[i].brandName = temp;
-		strcpy(item[i].brandName, temp);
-		
-		fflush(stdin);
-        printf("Enter Number of Sizes Available for %s: ", item[i].brandName);
-        scanf("%d", &item[i].availableNumberOfSizes);
-        
-        for(j = 0; j < item[i].availableNumberOfSizes; j++)
-        {
-            fflush(stdin);
-            printf("Enter Shoe Size %d: ", j + 1);
-            scanf("%d", &item[i].quantity[j].brandSize);
-            
-            fflush(stdin);
-            printf("Enter Shoe Size Quantity %d: ", j + 1);
-            scanf("%d", &item[i].quantity[j].brandQuantity);
-        }
-    }
-    
-    system("pause");
+
+	        fflush(stdin);
+	        printf("Brand name: ");
+	        scanf("%s", temp);
+
+	        for(k = 0; k < n; k++)
+	        {
+	        	if(!strcmp(toupper(brandName[i]), toupper(temp)))
+				{
+					printf("Brand Already Exists!");
+					Sleep(5000);
+					fflush(stdin);
+					system("cls");
+					AddItems();
+				}
+			}
+
+			brandID[i] = tempID;
+			strcpy(brandName[i], temp);
+
+			//Women Size
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 5: ");
+			scanf("%d", &wsize_5_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 6: ");
+			scanf("%d", &wsize_6_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 7: ");
+			scanf("%d", &wsize_7_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 8: ");
+			scanf("%d", &wsize_8_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 9: ");
+			scanf("%d", &wsize_9_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 10: ");
+			scanf("%d", &wsize_10_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 11: ");
+			scanf("%d", &wsize_11_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Women Size 12: ");
+			scanf("%d", &wsize_12_qty[i]);
+
+			//Mens Size
+			fflush(stdin);
+			printf("Enter Quantity for Men Size 4: ");
+			scanf("%d", &msize_4_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Men Size 5: ");
+			scanf("%d", &msize_5_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Men Size 6: ");
+			scanf("%d", &msize_6_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Men Size 7: ");
+			scanf("%d", &msize_7_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Men Size 8: ");
+			scanf("%d", &msize_8_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Men Size 9: ");
+			scanf("%d", &msize_9_qty[i]);
+
+			fflush(stdin);
+			printf("Enter Quantity for Men Size 10: ");
+			scanf("%d", &msize_10_qty[i]);
+	    }
+
+	    printf("\n\n");
+	    printf("Do you want to Retry? [Y]es|[N]o: ");
+	    scanf("%c", &option);
+
+
+	    if(option == 'N' || option == 'n')
+	    {
+	    	fflush(stdin);
+	    	Menu();
+	    }
+	}
+	while(option == 'Y' || option == 'y');
 }
 
 void DeleteItem()
 {
-	Exit();
+	//
 }
 
 void Records()
@@ -169,21 +264,17 @@ void Records()
     printf("ID\t|\tNAME\t|\tSize\t|\tQUANTITY \n");
     printf("------------------------------------------------------------------\n");
     
-    for(i = 0; i < 20; i++)
-    {
-    	if(item[i].brandID != '\0')
-    	{
-    		printf("%-4d %-15s\n", item[i].brandID, item[i].brandName);
-	        for(j = 0; j < item[i].availableNumberOfSizes; j++)
-	        {
-	            if(item[i].quantity[j].brandSize != '\0')
-	                printf("\t\t%-5d %-5d\n", item[i].quantity[j].brandSize, item[i].quantity[j].brandQuantity);
-	        }
-	        system("pause");
-		}
-		fflush(stdout);
-		Menu();
-    }
+    //
+}
+
+void Search()
+{
+	//
+}
+
+void FileHandler()
+{
+	//
 }
 
 void Exit()
