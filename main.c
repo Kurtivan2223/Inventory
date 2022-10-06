@@ -44,7 +44,7 @@ void AddItems(); // done
 void DeleteItem(); // done
 void Records(); // done
 void searchMenu(); //pending
-void Search(char brandString[20][20]); // done
+void Search(char* brandString); // done
 // void ReadFile(); // done
 // void WriteFile(); //pending
 void Exit(); // done
@@ -152,9 +152,9 @@ void AddItems()
 
 	        for(k = 0; k < ID; k++)
 	        {
-	        	if(!strcmp(toupper(brandName[i]), toupper(temp)))
+	        	if(brandID[k] == tempID)
 				{
-					printf("Brand Already Exists!");
+					printf("Brand ID Already Used!");
 					Sleep(5000);
 					fflush(stdin);
 					system("cls");
@@ -168,7 +168,7 @@ void AddItems()
 
 	        for(k = 0; k < n; k++)
 	        {
-	        	if(!strcmp(toupper(brandName[i]), toupper(temp)))
+	        	if(strcmp(toupper(brandName[i]), toupper(temp)) == 0)
 				{
 					printf("Brand Already Exists!");
 					Sleep(5000);
@@ -263,13 +263,14 @@ void DeleteItem()
 	char option = 'Y';
 	char temp[20];
 	int i, location, j;
-	int tempBrand = sizeof(brandID) / sizeof(brandID[0]), 
-		found = false;
+	int tempBrand = sizeof(brandID) / sizeof(brandID[0]);
+	int found = false;
 
 	do
 	{
 		printf("Enter Brand Name You want to Delete: ");
 		scanf("%s", temp);
+		fflush(stdin);
 		
 		for(i = 0; i < tempBrand; i++)
 		{
@@ -290,7 +291,7 @@ void DeleteItem()
 			for(j = location - 1; j < tempBrand; j++)
 			{
 				brandID[j] = brandID[j + 1];
-				brandName[j] = brandName[j + 1]; //how the fuck do I remove a value from here
+				strcpy(brandName[j], brandName[j + 1]);
 				wsize_5_qty[j] = wsize_5_qty[j + 1];
 				wsize_6_qty[j] = wsize_6_qty[j + 1];
 				wsize_7_qty[j] = wsize_7_qty[j + 1];
@@ -315,8 +316,11 @@ void DeleteItem()
 			printf("There is no such Brand in the Inventory!");
 		}
 
+		temp[0] = '\0';
+
 		scanf("%c", &option);
 		fflush(stdin);
+		
 		if(option == 'N' or option == 'n')
 		{
 			Sleep(5000);
@@ -327,71 +331,79 @@ void DeleteItem()
 
 void Records()
 {
-    int option, i, k, j;
+    int option, i, k, j, tempBrand;
     int m = 4, w = 5;
+	tempBrand = sizeof(brandID) / sizeof(brandID[0]);
 
     do
     {
         system("cls");
         printf("********** Main Menu **********");
-        printf("\n\n[1] Show Current Records\n[2] Show All Records\n[3] Menu\n: ");
+        printf("\n\n[1] Show Current Records\n[2] Show All Records\n[3]Search Record\n[4] Menu\n: ");
         scanf("%d", &option);
         fflush(stdin);
 
         switch(option)
         {
         case 1:
-		system("cls");
-		Sleep(1000);
-		printf(" ***** INVENTORY *****\n");
-		printf("------------------------------------------------------------------\n");
-		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
-		printf("------------------------------------------------------------------\n");
-
-		int tempBrand = sizeof(brandID) / sizeof(brandID[0]);
-
-		for(i = 0; i < tempBrand; i++)
-		{
-			printf("%-4d %-15s\n", brandID[i], brandName[i]);
-
-			printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
-			printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
-			printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
-			printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
-			printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
-			printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
-			printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
-
-			printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
-			printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
-			printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
-			printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
-			printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
-			printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
-			printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
-			printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
-		}
-		system("pause");
-		Records();
-		break;
+			system("cls");
+			Sleep(1000);
+			printf("\t\t\t***** INVENTORY *****\n");
+			printf("-------------------------------------------------------------------------------------\n");
+			printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
+			printf("-------------------------------------------------------------------------------------\n");
+	
+			for(i = 0; i < tempBrand; i++)
+			{
+				if(brandID[i] != '\0')
+				{
+					printf("%-4d %-15s\n", brandID[i], brandName[i]);
+	
+					printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
+					printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
+					printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
+					printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
+					printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
+					printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
+					printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
+		
+					printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
+					printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
+					printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
+					printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
+					printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
+					printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
+					printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
+					printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
+				}
+			}
+			system("pause");
+			Records();
+			break;
         case 2:
-		system("cls");
-		Sleep(1000);
-		ReadFile();
-		break;
-        case 3:
-		system("cls");
-		Sleep(1000);
-		Menu();
-		break;
-        default:
-            system("cls");
-            printf("There is no such Option!\n");
-            for(k = 0; k < 5; k++)
-            {
-                printf("Please try again in \r%d", k + 1);
-                Sleep(5000);
-            }
+			system("cls");
+			Sleep(1000);
+			//ReadFile();
+			Exit();
+			break;
+		case 3:
+			system("cls");
+			Sleep(1000);
+			searchMenu();
+			break;
+        case 4:
+			system("cls");
+			Sleep(1000);
+			Menu();
+			break;
+	        default:
+	            system("cls");
+	            printf("There is no such Option!\n");
+	            for(k = 0; k < 5; k++)
+	            {
+	                printf("Please try again in \r%d", k + 1);
+	                Sleep(5000);
+	            }
         }
     }
     while(option != 3);
@@ -407,6 +419,7 @@ void searchMenu()
 		printf("Enter Brand Name You want to search: ");
 		scanf("%s", temp);
 		Search(temp);
+		temp[0] = '\0'; //empty the string
 		scanf("%c", &option);
 		fflush(stdin);
 		if(option == 'N' or option == 'n')
@@ -418,7 +431,7 @@ void searchMenu()
 	while(option == 'Y' or option == 'y');
 }
 
-void Search(char brandString[20][20])
+void Search(char* brandString)
 {
 	
 	int i;
@@ -428,7 +441,7 @@ void Search(char brandString[20][20])
 	
 	int location;
 	
-	for(i = 0; i < size; i++)\
+	for(i = 0; i < size; i++)
 	{
 		if(strcmp(brandName[i], brandString) == 0)
 		{
@@ -447,10 +460,10 @@ void Search(char brandString[20][20])
 	{
 		system("cls");
 		Sleep(1000);
-		printf(" ***** INVENTORY *****\n");
-		printf("------------------------------------------------------------------\n");
+		printf("\t\t\t***** INVENTORY *****\n");
+		printf("-------------------------------------------------------------------------------------\n");
 		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
-		printf("------------------------------------------------------------------\n");
+		printf("-------------------------------------------------------------------------------------\n");
 		printf("%-4d %-15s\n", brandID[location], brandName[location]);
 		printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[location - 1]);
 		printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[location - 1]);
