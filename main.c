@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,11 +40,13 @@ void AddItems(); // done
 void DeleteItem(); // done
 void Records(); // done
 void searchMenu(); //pending
-void Search(char* brandString); // done
+void Search(char brandString[]); // done
 void ReadTxtFile(); // done
 // void WriteFile(); //pending
-int compare(char brand[][20], char stringName[]);
-int locator(char brand[][20], char stringName[]);
+int compare(char stringName[]);
+int stringlocator(char stringName[]);
+int numInputCheck(int num);
+int strInputCheck(char stringInput[]);
 void Exit(); // done
 
 //main function
@@ -151,6 +154,15 @@ ids:
 	        printf("Brand ID: ");
 	        scanf("%d", &tempID);
 
+			// if(numInputCheck(tempID) == false)
+			// {
+			// 	printf("Input only Accepts Integers!");
+			// 	Sleep(5000);
+			// 	fflush(stdin);
+			// 	system("cls");
+			// 	goto ids;
+			// }
+
 	        for(k = 0; k < n; k++)
 	        {
 	        	if(brandID[k] == tempID)
@@ -162,12 +174,22 @@ ids:
 					goto ids;
 				}
 			}
-names;
+			brandID[i] = tempID;
+names:
 	        fflush(stdin);
 	        printf("Brand name: ");
 	        scanf("%s", temp);
 
-			if(compare(brandName, temp) == true)
+			if(strInputCheck(temp) == true)
+			{
+				printf("Input only Accepts letter for string!");
+				Sleep(5000);
+				fflush(stdin);
+				system("cls");
+				goto names;
+			}
+
+			if(compare(temp) == true)
 			{
 				printf("Brand Already Exists!");
 				Sleep(5000);
@@ -176,7 +198,6 @@ names;
 				goto names;
 			}
 
-			brandID[i] = tempID;
 			strcpy(brandName[i], temp);
 
 			//Women Size
@@ -276,10 +297,10 @@ temps:
 		printf("Enter Brand Name You want to Delete: ");
 		scanf("%s", temp);
 
-		if(compare(brandName, temp) == true)
+		if(compare(temp) == true)
 		{
 			found = true;
-			location = locator(brandName, temp);
+			location = stringlocator(temp);
 		}
 
 		if(found == true)
@@ -435,19 +456,18 @@ void searchMenu()
 	while(option == 'Y' or option == 'y');
 }
 
-void Search(char* brandString)
+void Search(char brandString[])
 {
 	
 	int i;
 	int found = false;
 	int location;
 
-	if(compare(brandName, temp) == true)
+	if(compare(brandString) == true)
 	{
 		found = true;
-		location = locator(brandName, temp);
+		location = stringlocator(brandString);
 	}
-	
 	
 	if(found == true)
 	{
@@ -513,36 +533,63 @@ void ReadTxtFile()
 // 	//something ..
 // }
 
-int compare(char brand[][20], char stringName[])
+int compare(char stringName[])
 {
-	int size = sizeof(brand) / sizeof(brand[0]);
+	int size = sizeof(brandName) / sizeof(brandName[0]);
 	int i, same = false, count;
 	
 	for(i = 0; i < size; i++)
-		if(brand[i] != '\0')
+		if(brandName[i] != '\0')
 			count++;
 				
 	for(i = 0; i < count; i++)
-		if(strcmp(tolower(brand[i]), tolower(stringName)) == false)
-			same = true;
+		if(brandName[i] != '\0')
+			if(strcmp(tolower(brandName[i]), tolower(stringName)) == false)
+				same = true;
 
 	return same;
 }
 
-int locator(char brand[][20], char stringName[])
+int stringlocator(char stringName[])
 {
-	int size = sizeof(brand) / sizeof(brand[0]);
+	int size = sizeof(brandName) / sizeof(brandName[0]);
 	int i, location = 0, count;
 	
 	for(i = 0; i < size; i++)
-		if(brand[i] != '\0')
+		if(brandName[i] != '\0')
 			count++;
 				
 	for(i = 0; i < count; i++)
-		if(strcmp(tolower(brand[i]), tolower(stringName)) == false)
-			location = i + 1;
+		if(brandName[i] != '\0')
+			if(strcmp(tolower(brandName[i]), tolower(stringName)) == false)
+				location = i + 1;
 
 	return location;
+}
+
+int numInputCheck(int num)
+{
+	int check;
+	if(isdigit(num))
+		check = true;
+	else
+		check = false;
+
+	return check;
+}
+
+int strInputCheck(char stringInput[])
+{
+	int i, length = strlen(stringInput), check;
+	
+	for(i = 0; i < length + 1; i++)
+		if(stringInput[i] != '\0')
+			if(!isdigit(stringInput[i]))
+				check = false;
+			else
+				check = true;
+	
+	return check;
 }
 
 void Exit()
