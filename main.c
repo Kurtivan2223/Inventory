@@ -44,9 +44,9 @@ void AddItems(); // done
 void DeleteItem(); // done
 void Records(); // done
 void searchMenu(); //pending
-void Search(); // done
-void ReadFile(); // done
-void WriteFile(); //pending
+void Search(char brandString[20][20]); // done
+// void ReadFile(); // done
+// void WriteFile(); //pending
 void Exit(); // done
 
 //main function
@@ -128,7 +128,7 @@ void Menu()
 //Add Item Screen
 void AddItems()
 {
-	int i, n, tempID;
+	int i, k, n, tempID;
     char temp[20];
 
     char option = 'Y';
@@ -249,18 +249,80 @@ void AddItems()
 	    scanf("%c", &option);
 
 
-	    if(option == 'N' || option == 'n')
+	    if(option == 'N' or option == 'n')
 	    {
 	    	fflush(stdin);
 	    	Menu();
 	    }
 	}
-	while(option == 'Y' || option == 'y');
+	while(option == 'Y' or option == 'y');
 }
 
 void DeleteItem()
 {
-	//
+	char option = 'Y';
+	char temp[20];
+	int i, location, j;
+	int tempBrand = sizeof(brandID) / sizeof(brandID[0]), 
+		found = false;
+
+	do
+	{
+		printf("Enter Brand Name You want to Delete: ");
+		scanf("%s", temp);
+		
+		for(i = 0; i < tempBrand; i++)
+		{
+			if(strcmp(brandName[i], temp) == 0)
+			{
+				found = true;
+				location = i + 1;
+			}
+			else
+			{
+				found = false;
+				location = 0;
+			}
+		}
+
+		if(found == true)
+		{
+			for(j = location - 1; j < tempBrand; j++)
+			{
+				brandID[j] = brandID[j + 1];
+				brandName[j] = brandName[j + 1]; //how to fuck do I remove a value from here
+				wsize_5_qty[j] = wsize_5_qty[j + 1];
+				wsize_6_qty[j] = wsize_6_qty[j + 1];
+				wsize_7_qty[j] = wsize_7_qty[j + 1];
+				wsize_8_qty[j] = wsize_8_qty[j + 1];
+				wsize_9_qty[j] = wsize_9_qty[j + 1];
+				wsize_10_qty[j] = wsize_10_qty[j + 1];
+				wsize_11_qty[j] = wsize_11_qty[j + 1];
+				wsize_12_qty[j] = wsize_12_qty[j + 1];
+				msize_4_qty[j] = msize_4_qty[j + 1];
+				msize_5_qty[j] = msize_5_qty[j + 1];
+				msize_6_qty[j] = msize_6_qty[j + 1];
+				msize_7_qty[j] = msize_7_qty[j + 1];
+				msize_8_qty[j] = msize_8_qty[j + 1];
+				msize_9_qty[j] = msize_9_qty[j + 1];
+				msize_10_qty[j] = msize_10_qty[j + 1];
+			}
+
+			printf("Successfully Deleted %s records in the Inventory!", temp);
+		}
+		else
+		{
+			printf("There is no such Brand in the Inventory!");
+		}
+
+		scanf("%c", &option);
+		fflush(stdin);
+		if(option == 'N' or option == 'n')
+		{
+			Sleep(5000);
+			Menu();
+		}
+	}while(option == 'Y' or option == 'y');
 }
 
 void Records()
@@ -338,9 +400,13 @@ void Records()
 void searchMenu()
 {
 	char option = 'Y';
-	
+	char temp[20];
+
 	do
 	{
+		printf("Enter Brand Name You want to search: ");
+		scanf("%s", temp);
+		Search(temp);
 		scanf("%c", &option);
 		fflush(stdin);
 		if(option == 'N' or option == 'n')
@@ -352,7 +418,7 @@ void searchMenu()
 	while(option == 'Y' or option == 'y');
 }
 
-void Search()
+void Search(char brandString[20][20])
 {
 	
 	int i;
@@ -364,15 +430,15 @@ void Search()
 	
 	for(i = 0; i < size; i++)\
 	{
-		if(strcmp(array[i], brandName) == 0)
+		if(strcmp(brandName[i], brandString) == 0)
 		{
 			found = true;
-			location = i;
+			location = i + 1;
 		}
 		else
 		{
 			found = false;
-			location = -1;
+			location = 0;
 		}
 	}
 	
@@ -386,22 +452,22 @@ void Search()
 		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
 		printf("------------------------------------------------------------------\n");
 		printf("%-4d %-15s\n", brandID[location], brandName[location]);
-		printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[location]);
-		printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[location]);
-		printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[location]);
-		printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[location]);
-		printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[location]);
-		printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[location]);
-		printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[location]);
+		printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[location - 1]);
+		printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[location - 1]);
+		printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[location - 1]);
+		printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[location - 1]);
+		printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[location - 1]);
+		printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[location - 1]);
+		printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[location - 1]);
 
-		printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[location]);
-		printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[location]);
-		printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[location]);
-		printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[location]);
-		printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[location]);
-		printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[location]);
-		printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[location]);
-		printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[location - 1]);
+		printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[location - 1]);
+		printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[location - 1]);
+		printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[location - 1]);
+		printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[location - 1]);
+		printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[location - 1]);
+		printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[location - 1]);
+		printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[location - 1]);
 		system("pause");
 	}
 	else
@@ -412,30 +478,30 @@ void Search()
 }
 
 
-void ReadFile()
-{
-	char buffer[500];
+// void ReadFile()
+// {
+// 	char buffer[500];
 
-	FILE fileptr = fopen('Logs\\records.txt', 'r');
+// 	FILE fileptr = fopen('Logs\\records.txt', 'r');
 
-	if(fileptr == NULL)
-		printf("There is no Records");
+// 	if(fileptr == NULL)
+// 		printf("There is no Records");
 
-	while(fgets(buffer, sizeof(buffer), fileptr))
-	{
-		printf("%s", buffer);
-	}
+// 	while(fgets(buffer, sizeof(buffer), fileptr))
+// 	{
+// 		printf("%s", buffer);
+// 	}
 
-	fclose(fileptr);
+// 	fclose(fileptr);
 
-	System("pause");
-	Records();
-}
+// 	System("pause");
+// 	Records();
+// }
 
-void WriteFile()
-{
-	//something ..
-}
+// void WriteFile()
+// {
+// 	//something ..
+// }
 
 void Exit()
 {
