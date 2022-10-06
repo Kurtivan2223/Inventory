@@ -316,8 +316,6 @@ void DeleteItem()
 			printf("There is no such Brand in the Inventory!");
 		}
 
-		temp[0] = '\0';
-
 		scanf("%c", &option);
 		fflush(stdin);
 		
@@ -418,15 +416,19 @@ void searchMenu()
 	{
 		printf("Enter Brand Name You want to search: ");
 		scanf("%s", temp);
+
 		Search(temp);
-		temp[0] = '\0'; //empty the string
+
+		printf("Do you want to Retry? [Y]es|[N]o: ");
 		scanf("%c", &option);
 		fflush(stdin);
+
 		if(option == 'N' or option == 'n')
 		{
 			Sleep(5000);
 			Menu();
 		}
+		
 	}
 	while(option == 'Y' or option == 'y');
 }
