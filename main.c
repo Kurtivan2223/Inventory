@@ -272,7 +272,12 @@ void Search()
 	//
 }
 
-void FileHandler()
+void ReadFile()
+{
+	//
+}
+
+void WriteFile()
 {
 	//
 }
