@@ -333,7 +333,7 @@ void Records()
     int option, i, k, j, size, count;
     int m = 4, w = 5;
 	size = sizeof(brandID) / sizeof(brandID[0]);
-	
+
 	for(i = 0; i < size; i++)
 		if(brandID[i] != '\0')
 			count++;
@@ -515,7 +515,7 @@ void ReadTxtFile()
 
 int compare(char brand[][20], char stringName[])
 {
-	int size = sizeof(stringName) / sizeof(stringName[0]);
+	int size = sizeof(brand) / sizeof(brand[0]);
 	int i, same = false, count;
 	
 	for(i = 0; i < size; i++)
@@ -531,7 +531,7 @@ int compare(char brand[][20], char stringName[])
 
 int locator(char brand[][20], char stringName[])
 {
-	int size = sizeof(stringName) / sizeof(stringName[0]);
+	int size = sizeof(brand) / sizeof(brand[0]);
 	int i, location = 0, count;
 	
 	for(i = 0; i < size; i++)
