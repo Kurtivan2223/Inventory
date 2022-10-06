@@ -290,7 +290,7 @@ void DeleteItem()
 			for(j = location - 1; j < tempBrand; j++)
 			{
 				brandID[j] = brandID[j + 1];
-				brandName[j] = brandName[j + 1]; //how to fuck do I remove a value from here
+				brandName[j] = brandName[j + 1]; //how the fuck do I remove a value from here
 				wsize_5_qty[j] = wsize_5_qty[j + 1];
 				wsize_6_qty[j] = wsize_6_qty[j + 1];
 				wsize_7_qty[j] = wsize_7_qty[j + 1];
