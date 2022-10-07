@@ -89,7 +89,7 @@ void Menu()
     {
         system("cls");
         printf("********** Main Menu **********");
-        printf("\n\n[1] Add Item\n[2] Delete Item\n[3]Insert at Any location List\n[4] Show Records\n[5] Exit\n: ");
+        printf("\n\n[1] Add Item\n[2] Delete Item\n[3] Insert at Any location List\n[4] Show Records\n[5] Exit\n: ");
         scanf("%d", &option);
         fflush(stdin);
 
@@ -198,7 +198,6 @@ names:
 
 			strcpy(brandName[i], temp);
 
-			Women Size
 			fflush(stdin);
 			printf("Enter Quantity for Women Size 5: ");
 			scanf("%d", &wsize_5_qty[i]);
@@ -231,7 +230,6 @@ names:
 			printf("Enter Quantity for Women Size 12: ");
 			scanf("%d", &wsize_12_qty[i]);
 
-			//Mens Size
 			fflush(stdin);
 			printf("Enter Quantity for Men Size 4: ");
 			scanf("%d", &msize_4_qty[i]);
@@ -340,6 +338,7 @@ temps:
 			memset(brandName[size - 1], 0, sizeof(brandName[0]));
 
 			temporarySize -= 1;
+			WritesFile();
 
 			printf("Successfully Deleted %s records in the Inventory!", temp);
 			Sleep(5000);
@@ -373,7 +372,7 @@ void Records()
     {
         system("cls");
         printf("********** Main Menu **********");
-        printf("\n\n[1] Show Current Records\n[2] Show All Records\n[3]Search Record\n[4] Menu\n: ");
+        printf("\n\n[1] Show Current Records\n[2] Show All Records\n[3] Search Record\n[4] Menu\n: ");
         scanf("%d", &option);
         fflush(stdin);
 
@@ -591,7 +590,7 @@ void WritesFile()
 
 void insertAnyLocation()
 {
-	int location, size = temporarySize, k, tempId;
+	int location, size = temporarySize, i, k, tempID;
 	
 	char temp[20], option = 'Y';
 
@@ -602,7 +601,7 @@ void insertAnyLocation()
 		printf("Location: ");
 		scanf("%d", &location);
 
-		memmove(names[n + 1], names[n], (size - n) * sizeof(names[0]));
+		memmove(brandName[location + 1], brandName[location], (size - location) * sizeof(brandName[0]));
 
 		size++;
 
@@ -663,7 +662,7 @@ insertnames:
 			Sleep(5000);
 			fflush(stdin);
 			system("cls");
-			goto names;
+			goto insertnames;
 		}
 
 		strcpy(brandName[location - 1], temp);
@@ -727,6 +726,9 @@ insertnames:
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 10: ");
 		scanf("%d", &msize_10_qty[location - 1]);
+
+		temporarySize += 1;
+		WritesFile();
 
 		fflush(stdin);
 		printf("Do you want to Retry? [Y]es|[N]o: ");
