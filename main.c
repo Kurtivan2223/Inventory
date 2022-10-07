@@ -1,3 +1,4 @@
+#include <windows.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +12,7 @@
 #define EXIT_SUCCESS 0
 
 //Global Variables
+int temporarySize;
 int brandID[20];
 char brandName[20][20];
 
@@ -128,14 +130,11 @@ void Menu()
 void AddItems()
 {
 	int i, k, n, tempID, count;
-	int size = sizeof(brandID) / sizeof(brandID[0]);
     char temp[20];
 
     char option = 'Y';
 
-	for(i = 0; i < size; i++)
-		if(brandID[i] != '\0')
-			count++;
+	count = temporarySize;
 
    	do
    	{
@@ -252,6 +251,8 @@ names:
 			printf("Enter Quantity for Men Size 10: ");
 			scanf("%d", &msize_10_qty[i]);
 	    }
+
+		temporarySize = i;
 	    
 		fflush(stdin);
 	    printf("\n\n");
@@ -273,12 +274,8 @@ void DeleteItem()
 	char option = 'Y';
 	char temp[20];
 	int i, location = 0, j, count;
-	int size = sizeof(brandID) / sizeof(brandID[0]);
+	int size = temporarySize;
 	int found;
-
-	for(i = 0; i < size; i++);
-		if(brandID[i] != '\0')
-			count++;
 
 	do
 	{
@@ -314,25 +311,27 @@ temps:
 			 	msize_10_qty[j] = msize_10_qty[j + 1];
 			}
 
-			//Erase one element
+			//Erase one element | 'P.S' wa ko kahibaw asa ni sya ni shift padung ikaw nay sabot kahibaw ko nga kahibaw ka good luck!!
 			memmove(brandName[location - 1], brandName[location], (size - location) * sizeof(brandName[0]));
-			//Erase the final slot whose content has been shifted up
+			//Erase the final slot whose content has been shifted
 			memset(brandName[count - 1], 0, sizeof(brandName[0]));
-			memset(wsize_5_qty[count - 1], 0, sizeof(wsize_5_qty[0]));
-			memset(wsize_6_qty[count - 1], 0, sizeof(wsize_6_qty[0]));
-			memset(wsize_7_qty[count - 1], 0, sizeof(wsize_7_qty[0]));
-			memset(wsize_8_qty[count - 1], 0, sizeof(wsize_8_qty[0]));
-			memset(wsize_9_qty[count - 1], 0, sizeof(wsize_9_qty[0]));
-			memset(wsize_10_qty[count - 1], 0, sizeof(wsize_10_qty[0]));
-			memset(wsize_11_qty[count - 1], 0, sizeof(wsize_11_qty[0]));
-			memset(wsize_12_qty[count - 1], 0, sizeof(wsize_12_qty[0]));
-			memset(msize_4_qty[count - 1], 0, sizeof(msize_4_qty[0]));
-			memset(msize_5_qty[count - 1], 0, sizeof(msize_5_qty[0]));
-			memset(msize_6_qty[count - 1], 0, sizeof(msize_6_qty[0]));
-			memset(msize_7_qty[count - 1], 0, sizeof(msize_7_qty[0]));
-			memset(msize_8_qty[count - 1], 0, sizeof(msize_8_qty[0]));
-			memset(msize_9_qty[count - 1], 0, sizeof(msize_9_qty[0]));
-			memset(msize_10_qty[count - 1], 0, sizeof(msize_10_qty[0]));
+			
+			//buangon lang jud ko wa ni basa sa documentation nga mas angay ni sya para sa char and string kay 1 byte kontra sa int nga 4 bytes
+			// memset(wsize_5_qty[count - 1], 0, sizeof(wsize_5_qty[0]));
+			// memset(wsize_6_qty[count - 1], 0, sizeof(wsize_6_qty[0]));
+			// memset(wsize_7_qty[count - 1], 0, sizeof(wsize_7_qty[0]));
+			// memset(wsize_8_qty[count - 1], 0, sizeof(wsize_8_qty[0]));
+			// memset(wsize_9_qty[count - 1], 0, sizeof(wsize_9_qty[0]));
+			// memset(wsize_10_qty[count - 1], 0, sizeof(wsize_10_qty[0]));
+			// memset(wsize_11_qty[count - 1], 0, sizeof(wsize_11_qty[0]));
+			// memset(wsize_12_qty[count - 1], 0, sizeof(wsize_12_qty[0]));
+			// memset(msize_4_qty[count - 1], 0, sizeof(msize_4_qty[0]));
+			// memset(msize_5_qty[count - 1], 0, sizeof(msize_5_qty[0]));
+			// memset(msize_6_qty[count - 1], 0, sizeof(msize_6_qty[0]));
+			// memset(msize_7_qty[count - 1], 0, sizeof(msize_7_qty[0]));
+			// memset(msize_8_qty[count - 1], 0, sizeof(msize_8_qty[0]));
+			// memset(msize_9_qty[count - 1], 0, sizeof(msize_9_qty[0]));
+			// memset(msize_10_qty[count - 1], 0, sizeof(msize_10_qty[0]));
 
 			printf("Successfully Deleted %s records in the Inventory!", temp);
 			system("pause");
@@ -359,13 +358,8 @@ temps:
 
 void Records()
 {
-    int option, i, k, j, size, count;
+    int option, i, k, j, size, count = temporarySize;
     int m = 4, w = 5;
-	size = sizeof(brandID) / sizeof(brandID[0]);
-
-	for(i = 0; i < size; i++)
-		if(brandID[i] != '\0')
-			count++;
 
     do
     {
@@ -472,13 +466,11 @@ void Search(char brandString[])
 	int location;
 
 	if(compare(brandString) == true)
-	{
 		found = true;
-		location = stringlocator(brandString);
-	}
 	
 	if(found == true)
 	{
+		location = stringlocator(brandString);
 		system("cls");
 		Sleep(1000);
 		printf("\t\t\t***** INVENTORY *****\n");
@@ -543,34 +535,24 @@ void ReadTxtFile()
 
 int compare(char stringName[])
 {
-	int size = sizeof(brandName) / sizeof(brandName[0]);
-	int i, same = false, count;
-	
-	for(i = 0; i < size; i++)
-		if(brandName[i] != '\0')
-			count++;
+	int size = temporarySize;
+	int i, same = false;
 				
-	for(i = 0; i < count; i++)
-		if(brandName[i] != '\0')
-			if(strcmp(tolower(brandName[i]), tolower(stringName)) == false)
-				same = true;
+	for(i = 0; i < size; i++)
+		if(strcmp(tolower(brandName[i]), tolower(stringName)) == false)
+			same = true;
 
 	return same;
 }
 
 int stringlocator(char stringName[])
 {
-	int size = sizeof(brandName) / sizeof(brandName[0]);
-	int i, location = 0, count;
-	
-	for(i = 0; i < size; i++)
-		if(brandName[i] != '\0')
-			count++;
+	int size = temporarySize;
+	int i, location = 0;
 				
-	for(i = 0; i < count; i++)
-		if(brandName[i] != '\0')
-			if(strcmp(tolower(brandName[i]), tolower(stringName)) == false)
-				location = i + 1;
+	for(i = 0; i < size; i++)
+		if(strcmp(tolower(brandName[i]), tolower(stringName)) == false)
+			location = i + 1;
 
 	return location;
 }
