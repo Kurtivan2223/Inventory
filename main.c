@@ -143,6 +143,8 @@ void AddItems()
 	    scanf("%d", &n);
 	    fflush(stdin);
 
+		temporarySize += n;
+
 	    for(i = count; i < count + n; i++)
 	    {
 ids:
@@ -251,8 +253,6 @@ names:
 			printf("Enter Quantity for Men Size 10: ");
 			scanf("%d", &msize_10_qty[i]);
 	    }
-
-		temporarySize = i;
 	    
 		fflush(stdin);
 	    printf("\n\n");
@@ -311,12 +311,12 @@ temps:
 			 	msize_10_qty[j] = msize_10_qty[j + 1];
 			}
 
-			//Erase one element | 'P.S' wa ko kahibaw asa ni sya ni shift padung ikaw nay sabot kahibaw ko nga kahibaw ka good luck!!
+			//Erase one element | 'P.S' idk where this shifted to so goodluck partner on your presentation!!
 			memmove(brandName[location - 1], brandName[location], (size - location) * sizeof(brandName[0]));
 			//Erase the final slot whose content has been shifted
 			memset(brandName[count - 1], 0, sizeof(brandName[0]));
 			
-			//buangon lang jud ko wa ni basa sa documentation nga mas angay ni sya para sa char and string kay 1 byte kontra sa int nga 4 bytes
+			// I didn't fully read the documentation so i thought the function accepts 4 bytes but i was wrong it only accepts 1 bytes
 			// memset(wsize_5_qty[count - 1], 0, sizeof(wsize_5_qty[0]));
 			// memset(wsize_6_qty[count - 1], 0, sizeof(wsize_6_qty[0]));
 			// memset(wsize_7_qty[count - 1], 0, sizeof(wsize_7_qty[0]));
