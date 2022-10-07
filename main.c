@@ -45,6 +45,7 @@ void searchMenu(); //pending
 void Search(char brandString[]); // done
 void ReadTxtFile(); // done
 void WritesFile(); //pending
+void insertAnyLocation();
 int compare(char stringName[]);
 int stringlocator(char stringName[]);
 int strInputCheck(char stringInput[]);
@@ -88,7 +89,7 @@ void Menu()
     {
         system("cls");
         printf("********** Main Menu **********");
-        printf("\n\n[1] Add Item\n[2] Delete Item\n[3] Show Records\n[4] Exit\n: ");
+        printf("\n\n[1] Add Item\n[2] Delete Item\n[3]Insert at Any location List\n[4] Show Records\n[5] Exit\n: ");
         scanf("%d", &option);
         fflush(stdin);
 
@@ -104,12 +105,17 @@ void Menu()
             Sleep(1000);
             DeleteItem();
             break;
-        case 3:
+		case 3:
+            system("cls");
+            Sleep(1000);
+            insertAnyLocation();
+            break;
+        case 4:
             system("cls");
             Sleep(1000);
             Records();
             break;
-        case 4:
+        case 5:
             system("cls");
             Sleep(1000);
             Exit();
@@ -123,14 +129,15 @@ void Menu()
             }
         }
     }
-    while(option != 3);
+    while(option != 5);
 }
 
 //Add Item Screen
 void AddItems()
 {
-	int i, k, n, tempID, count;
+	int i, k, n, j, tempID, count;
     char temp[20];
+	int tempOld, tempNew;
 
     char option = 'Y';
 
@@ -191,7 +198,7 @@ names:
 
 			strcpy(brandName[i], temp);
 
-			//Women Size
+			Women Size
 			fflush(stdin);
 			printf("Enter Quantity for Women Size 5: ");
 			scanf("%d", &wsize_5_qty[i]);
@@ -580,6 +587,159 @@ void WritesFile()
 		}
 	}
 	fclose(fileptr);
+}
+
+void insertAnyLocation()
+{
+	int location, size = temporarySize, k, tempId;
+	
+	char temp[20], option = 'Y';
+
+	do
+	{
+		system("cls");
+		fflush(stdin);
+		printf("Location: ");
+		scanf("%d", &location);
+
+		memmove(names[n + 1], names[n], (size - n) * sizeof(names[0]));
+
+		size++;
+
+		for(i = size - 1; i >= location - 1; i--)
+		{
+			wsize_5_qty[i] = wsize_5_qty[i - 1];
+			wsize_6_qty[i] = wsize_6_qty[i - 1];
+			wsize_7_qty[i] = wsize_7_qty[i - 1];
+			wsize_8_qty[i] = wsize_8_qty[i - 1];
+			wsize_9_qty[i] = wsize_9_qty[i - 1];
+			wsize_10_qty[i] = wsize_10_qty[i - 1];
+			wsize_11_qty[i] = wsize_11_qty[i - 1];
+			wsize_12_qty[i] = wsize_12_qty[i - 1];
+			msize_4_qty[i] = msize_4_qty[i - 1];
+			msize_5_qty[i] = msize_5_qty[i - 1];
+			msize_6_qty[i] = msize_6_qty[i - 1];
+			msize_7_qty[i] = msize_7_qty[i - 1];
+			msize_8_qty[i] = msize_8_qty[i - 1];
+			msize_9_qty[i] = msize_9_qty[i - 1];
+			msize_10_qty[i] = msize_10_qty[i - 1];
+		}
+
+insertids:
+
+		fflush(stdin);
+		printf("Brand ID: ");
+		scanf("%d", &tempID);
+
+		for(k = 0; k < size; k++)
+		{
+			if(brandID[k] == tempID)
+			{
+				printf("Brand ID Already Used!");
+				Sleep(5000);
+				fflush(stdin);
+				system("cls");
+				goto insertids;
+			}
+		}
+		brandID[location - 1] = tempID;
+insertnames:
+		fflush(stdin);
+		printf("Brand name: ");
+		scanf("%s", temp);
+
+		if(strInputCheck(temp) == true)
+		{
+			printf("Input only Accepts letter for string!");
+			Sleep(5000);
+			fflush(stdin);
+			system("cls");
+			goto insertnames;
+		}
+
+		if(compare(temp) == true)
+		{
+			printf("Brand Already Exists!");
+			Sleep(5000);
+			fflush(stdin);
+			system("cls");
+			goto names;
+		}
+
+		strcpy(brandName[location - 1], temp);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 5: ");
+		scanf("%d", &wsize_5_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 6: ");
+		scanf("%d", &wsize_6_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 7: ");
+		scanf("%d", &wsize_7_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 8: ");
+		scanf("%d", &wsize_8_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 9: ");
+		scanf("%d", &wsize_9_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 10: ");
+		scanf("%d", &wsize_10_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 11: ");
+		scanf("%d", &wsize_11_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Women Size 12: ");
+		scanf("%d", &wsize_12_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Men Size 4: ");
+		scanf("%d", &msize_4_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Men Size 5: ");
+		scanf("%d", &msize_5_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Men Size 6: ");
+		scanf("%d", &msize_6_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Men Size 7: ");
+		scanf("%d", &msize_7_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Men Size 8: ");
+		scanf("%d", &msize_8_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Men Size 9: ");
+		scanf("%d", &msize_9_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Enter Quantity for Men Size 10: ");
+		scanf("%d", &msize_10_qty[location - 1]);
+
+		fflush(stdin);
+		printf("Do you want to Retry? [Y]es|[N]o: ");
+		scanf("%c", &option);
+		fflush(stdin);
+
+		if(option == 'N' or option == 'n')
+		{
+			Sleep(5000);
+			Menu();
+		}
+	}
+	while(option == 'Y' or option == 'y');
 }
 
 int compare(char stringName[])
