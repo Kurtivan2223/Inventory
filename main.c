@@ -45,7 +45,6 @@ void ReadTxtFile(); // done
 // void WriteFile(); //pending
 int compare(char stringName[]);
 int stringlocator(char stringName[]);
-int numInputCheck(int num);
 int strInputCheck(char stringInput[]);
 void Exit(); // done
 
@@ -153,15 +152,6 @@ ids:
 	    	fflush(stdin);
 	        printf("Brand ID: ");
 	        scanf("%d", &tempID);
-
-			// if(numInputCheck(tempID) == false)
-			// {
-			// 	printf("Input only Accepts Integers!");
-			// 	Sleep(5000);
-			// 	fflush(stdin);
-			// 	system("cls");
-			// 	goto ids;
-			// }
 
 	        for(k = 0; k < n; k++)
 	        {
@@ -284,7 +274,7 @@ void DeleteItem()
 	char temp[20];
 	int i, location = 0, j, count;
 	int size = sizeof(brandID) / sizeof(brandID[0]);
-	int found = false;
+	int found;
 
 	for(i = 0; i < size; i++);
 		if(brandID[i] != '\0')
@@ -296,17 +286,16 @@ temps:
 		fflush(stdin);
 		printf("Enter Brand Name You want to Delete: ");
 		scanf("%s", temp);
+		fflush(stdin);
 
-		if(compare(temp) == true)
-		{
-			found = true;
-			location = stringlocator(temp);
-		}
+		found = compare(temp);
 
 		if(found == true)
 		{
-			 for(j = location - 1; j < count; j++)
-			 {
+			location = stringlocator(temp);
+
+			for(j = location - 1; j < count; j++)
+			{
 			 	brandID[j] = brandID[j + 1];
 			 	wsize_5_qty[j] = wsize_5_qty[j + 1];
 			 	wsize_6_qty[j] = wsize_6_qty[j + 1];
@@ -323,12 +312,31 @@ temps:
 			 	msize_8_qty[j] = msize_8_qty[j + 1];
 			 	msize_9_qty[j] = msize_9_qty[j + 1];
 			 	msize_10_qty[j] = msize_10_qty[j + 1];
-			 }
-			
+			}
+
+			//Erase one element
 			memmove(brandName[location - 1], brandName[location], (size - location) * sizeof(brandName[0]));
+			//Erase the final slot whose content has been shifted up
 			memset(brandName[count - 1], 0, sizeof(brandName[0]));
+			memset(wsize_5_qty[count - 1], 0, sizeof(wsize_5_qty[0]));
+			memset(wsize_6_qty[count - 1], 0, sizeof(wsize_6_qty[0]));
+			memset(wsize_7_qty[count - 1], 0, sizeof(wsize_7_qty[0]));
+			memset(wsize_8_qty[count - 1], 0, sizeof(wsize_8_qty[0]));
+			memset(wsize_9_qty[count - 1], 0, sizeof(wsize_9_qty[0]));
+			memset(wsize_10_qty[count - 1], 0, sizeof(wsize_10_qty[0]));
+			memset(wsize_11_qty[count - 1], 0, sizeof(wsize_11_qty[0]));
+			memset(wsize_12_qty[count - 1], 0, sizeof(wsize_12_qty[0]));
+			memset(msize_4_qty[count - 1], 0, sizeof(msize_4_qty[0]));
+			memset(msize_5_qty[count - 1], 0, sizeof(msize_5_qty[0]));
+			memset(msize_6_qty[count - 1], 0, sizeof(msize_6_qty[0]));
+			memset(msize_7_qty[count - 1], 0, sizeof(msize_7_qty[0]));
+			memset(msize_8_qty[count - 1], 0, sizeof(msize_8_qty[0]));
+			memset(msize_9_qty[count - 1], 0, sizeof(msize_9_qty[0]));
+			memset(msize_10_qty[count - 1], 0, sizeof(msize_10_qty[0]));
 
 			printf("Successfully Deleted %s records in the Inventory!", temp);
+			system("pause");
+			Sleep(5000);
 		}
 		else
 		{
@@ -565,17 +573,6 @@ int stringlocator(char stringName[])
 				location = i + 1;
 
 	return location;
-}
-
-int numInputCheck(int num)
-{
-	int check;
-	if(isdigit(num))
-		check = true;
-	else
-		check = false;
-
-	return check;
 }
 
 int strInputCheck(char stringInput[])
