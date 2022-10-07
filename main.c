@@ -331,23 +331,8 @@ temps:
 			memmove(brandName[location - 1], brandName[location], (size - location) * sizeof(brandName[0]));
 			//Erase the final slot whose content has been shifted
 			memset(brandName[size - 1], 0, sizeof(brandName[0]));
-			
-			// I didn't fully read the documentation so i thought the function accepts 4 bytes but i was wrong it only accepts 1 byte
-			// memset(wsize_5_qty[size - 1], 0, sizeof(wsize_5_qty[0]));
-			// memset(wsize_6_qty[size - 1], 0, sizeof(wsize_6_qty[0]));
-			// memset(wsize_7_qty[size - 1], 0, sizeof(wsize_7_qty[0]));
-			// memset(wsize_8_qty[size - 1], 0, sizeof(wsize_8_qty[0]));
-			// memset(wsize_9_qty[size - 1], 0, sizeof(wsize_9_qty[0]));
-			// memset(wsize_10_qty[size - 1], 0, sizeof(wsize_10_qty[0]));
-			// memset(wsize_11_qty[size - 1], 0, sizeof(wsize_11_qty[0]));
-			// memset(wsize_12_qty[size - 1], 0, sizeof(wsize_12_qty[0]));
-			// memset(msize_4_qty[size - 1], 0, sizeof(msize_4_qty[0]));
-			// memset(msize_5_qty[size - 1], 0, sizeof(msize_5_qty[0]));
-			// memset(msize_6_qty[size - 1], 0, sizeof(msize_6_qty[0]));
-			// memset(msize_7_qty[size - 1], 0, sizeof(msize_7_qty[0]));
-			// memset(msize_8_qty[size - 1], 0, sizeof(msize_8_qty[0]));
-			// memset(msize_9_qty[size - 1], 0, sizeof(msize_9_qty[0]));
-			// memset(msize_10_qty[size - 1], 0, sizeof(msize_10_qty[0]));
+
+			temporarySize -= 1;
 
 			printf("Successfully Deleted %s records in the Inventory!", temp);
 			Sleep(5000);
