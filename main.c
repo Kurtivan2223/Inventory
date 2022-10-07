@@ -275,7 +275,7 @@ void DeleteItem()
 {
 	char option = 'Y';
 	char temp[20];
-	int i, location = 0, j, count;
+	int i, location = 0;
 	int size = temporarySize;
 	int found;
 
@@ -292,65 +292,64 @@ temps:
 		{
 			location = stringlocator(temp);
 
-			for(j = location - 1; j < count; j++)
+			for(i = location - 1; i < size - 1; i++)
 			{
-				brandID[j] = brandID[j + 1];
+				brandID[i] = brandID[i + 1];
 			
-				wsize_5_qty[j] = wsize_5_qty[j + 1];
+				wsize_5_qty[i] = wsize_5_qty[i + 1];
 			
-				wsize_6_qty[j] = wsize_6_qty[j + 1];
+				wsize_6_qty[i] = wsize_6_qty[i + 1];
 			
-				wsize_7_qty[j] = wsize_7_qty[j + 1];
+				wsize_7_qty[i] = wsize_7_qty[i + 1];
 			
-				wsize_8_qty[j] = wsize_8_qty[j + 1];
+				wsize_8_qty[i] = wsize_8_qty[i + 1];
 			
-				wsize_9_qty[j] = wsize_9_qty[j + 1];
+				wsize_9_qty[i] = wsize_9_qty[i + 1];
 			
-				wsize_10_qty[j] = wsize_10_qty[j + 1];
+				wsize_10_qty[i] = wsize_10_qty[i + 1];
 			
-				wsize_11_qty[j] = wsize_11_qty[j + 1];
+				wsize_11_qty[i] = wsize_11_qty[i + 1];
 			
-				wsize_12_qty[j] = wsize_12_qty[j + 1];
+				wsize_12_qty[i] = wsize_12_qty[i + 1];
 			
-				msize_4_qty[j] = msize_4_qty[j + 1];
+				msize_4_qty[i] = msize_4_qty[i + 1];
 			
-				msize_5_qty[j] = msize_5_qty[j + 1];
+				msize_5_qty[i] = msize_5_qty[i + 1];
 			
-				msize_6_qty[j] = msize_6_qty[j + 1];
+				msize_6_qty[i] = msize_6_qty[i + 1];
 			
-				msize_7_qty[j] = msize_7_qty[j + 1];
+				msize_7_qty[i] = msize_7_qty[i + 1];
 			
-				msize_8_qty[j] = msize_8_qty[j + 1];
+				msize_8_qty[i] = msize_8_qty[i + 1];
 			
-				msize_9_qty[j] = msize_9_qty[j + 1];
+				msize_9_qty[i] = msize_9_qty[i + 1];
 			
-				msize_10_qty[j] = msize_10_qty[j + 1];
+				msize_10_qty[i] = msize_10_qty[i + 1];
 			}
 
 			//Erase one element | 'P.S' idk where this shifted to so goodluck partner on your presentation!!
 			memmove(brandName[location - 1], brandName[location], (size - location) * sizeof(brandName[0]));
 			//Erase the final slot whose content has been shifted
-			memset(brandName[count - 1], 0, sizeof(brandName[0]));
+			memset(brandName[size - 1], 0, sizeof(brandName[0]));
 			
 			// I didn't fully read the documentation so i thought the function accepts 4 bytes but i was wrong it only accepts 1 byte
-			memset(wsize_5_qty[count - 1], 0, sizeof(wsize_5_qty[0]));
-			memset(wsize_6_qty[count - 1], 0, sizeof(wsize_6_qty[0]));
-			memset(wsize_7_qty[count - 1], 0, sizeof(wsize_7_qty[0]));
-			memset(wsize_8_qty[count - 1], 0, sizeof(wsize_8_qty[0]));
-			memset(wsize_9_qty[count - 1], 0, sizeof(wsize_9_qty[0]));
-			memset(wsize_10_qty[count - 1], 0, sizeof(wsize_10_qty[0]));
-			memset(wsize_11_qty[count - 1], 0, sizeof(wsize_11_qty[0]));
-			memset(wsize_12_qty[count - 1], 0, sizeof(wsize_12_qty[0]));
-			memset(msize_4_qty[count - 1], 0, sizeof(msize_4_qty[0]));
-			memset(msize_5_qty[count - 1], 0, sizeof(msize_5_qty[0]));
-			memset(msize_6_qty[count - 1], 0, sizeof(msize_6_qty[0]));
-			memset(msize_7_qty[count - 1], 0, sizeof(msize_7_qty[0]));
-			memset(msize_8_qty[count - 1], 0, sizeof(msize_8_qty[0]));
-			memset(msize_9_qty[count - 1], 0, sizeof(msize_9_qty[0]));
-			memset(msize_10_qty[count - 1], 0, sizeof(msize_10_qty[0]));
+			// memset(wsize_5_qty[size - 1], 0, sizeof(wsize_5_qty[0]));
+			// memset(wsize_6_qty[size - 1], 0, sizeof(wsize_6_qty[0]));
+			// memset(wsize_7_qty[size - 1], 0, sizeof(wsize_7_qty[0]));
+			// memset(wsize_8_qty[size - 1], 0, sizeof(wsize_8_qty[0]));
+			// memset(wsize_9_qty[size - 1], 0, sizeof(wsize_9_qty[0]));
+			// memset(wsize_10_qty[size - 1], 0, sizeof(wsize_10_qty[0]));
+			// memset(wsize_11_qty[size - 1], 0, sizeof(wsize_11_qty[0]));
+			// memset(wsize_12_qty[size - 1], 0, sizeof(wsize_12_qty[0]));
+			// memset(msize_4_qty[size - 1], 0, sizeof(msize_4_qty[0]));
+			// memset(msize_5_qty[size - 1], 0, sizeof(msize_5_qty[0]));
+			// memset(msize_6_qty[size - 1], 0, sizeof(msize_6_qty[0]));
+			// memset(msize_7_qty[size - 1], 0, sizeof(msize_7_qty[0]));
+			// memset(msize_8_qty[size - 1], 0, sizeof(msize_8_qty[0]));
+			// memset(msize_9_qty[size - 1], 0, sizeof(msize_9_qty[0]));
+			// memset(msize_10_qty[size - 1], 0, sizeof(msize_10_qty[0]));
 
 			printf("Successfully Deleted %s records in the Inventory!", temp);
-			system("pause");
 			Sleep(5000);
 		}
 		else
@@ -361,6 +360,7 @@ temps:
 			goto temps;
 		}
 
+		printf("Do you want to Retry? [Y]es|[N]o: ");
 		scanf("%c", &option);
 		fflush(stdin);
 		
