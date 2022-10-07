@@ -44,7 +44,7 @@ void Records(); // done
 void searchMenu(); //pending
 void Search(char brandString[]); // done
 void ReadTxtFile(); // done
-// void WriteFile(); //pending
+void WritesFile(); //pending
 int compare(char stringName[]);
 int stringlocator(char stringName[]);
 int strInputCheck(char stringInput[]);
@@ -253,6 +253,8 @@ names:
 			printf("Enter Quantity for Men Size 10: ");
 			scanf("%d", &msize_10_qty[i]);
 	    }
+
+		WritesFile();
 	    
 		fflush(stdin);
 	    printf("\n\n");
@@ -280,7 +282,6 @@ void DeleteItem()
 	do
 	{
 temps:
-		fflush(stdin);
 		printf("Enter Brand Name You want to Delete: ");
 		scanf("%s", temp);
 		fflush(stdin);
@@ -293,22 +294,37 @@ temps:
 
 			for(j = location - 1; j < count; j++)
 			{
-			 	brandID[j] = brandID[j + 1];
-			 	wsize_5_qty[j] = wsize_5_qty[j + 1];
-			 	wsize_6_qty[j] = wsize_6_qty[j + 1];
-			 	wsize_7_qty[j] = wsize_7_qty[j + 1];
-			 	wsize_8_qty[j] = wsize_8_qty[j + 1];
-			 	wsize_9_qty[j] = wsize_9_qty[j + 1];
-			 	wsize_10_qty[j] = wsize_10_qty[j + 1];
-			 	wsize_11_qty[j] = wsize_11_qty[j + 1];
-			 	wsize_12_qty[j] = wsize_12_qty[j + 1];
-			 	msize_4_qty[j] = msize_4_qty[j + 1];
-			 	msize_5_qty[j] = msize_5_qty[j + 1];
-			 	msize_6_qty[j] = msize_6_qty[j + 1];
-			 	msize_7_qty[j] = msize_7_qty[j + 1];
-			 	msize_8_qty[j] = msize_8_qty[j + 1];
-			 	msize_9_qty[j] = msize_9_qty[j + 1];
-			 	msize_10_qty[j] = msize_10_qty[j + 1];
+				brandID[j] = brandID[j + 1];
+			
+				wsize_5_qty[j] = wsize_5_qty[j + 1];
+			
+				wsize_6_qty[j] = wsize_6_qty[j + 1];
+			
+				wsize_7_qty[j] = wsize_7_qty[j + 1];
+			
+				wsize_8_qty[j] = wsize_8_qty[j + 1];
+			
+				wsize_9_qty[j] = wsize_9_qty[j + 1];
+			
+				wsize_10_qty[j] = wsize_10_qty[j + 1];
+			
+				wsize_11_qty[j] = wsize_11_qty[j + 1];
+			
+				wsize_12_qty[j] = wsize_12_qty[j + 1];
+			
+				msize_4_qty[j] = msize_4_qty[j + 1];
+			
+				msize_5_qty[j] = msize_5_qty[j + 1];
+			
+				msize_6_qty[j] = msize_6_qty[j + 1];
+			
+				msize_7_qty[j] = msize_7_qty[j + 1];
+			
+				msize_8_qty[j] = msize_8_qty[j + 1];
+			
+				msize_9_qty[j] = msize_9_qty[j + 1];
+			
+				msize_10_qty[j] = msize_10_qty[j + 1];
 			}
 
 			//Erase one element | 'P.S' idk where this shifted to so goodluck partner on your presentation!!
@@ -316,22 +332,22 @@ temps:
 			//Erase the final slot whose content has been shifted
 			memset(brandName[count - 1], 0, sizeof(brandName[0]));
 			
-			// I didn't fully read the documentation so i thought the function accepts 4 bytes but i was wrong it only accepts 1 bytes
-			// memset(wsize_5_qty[count - 1], 0, sizeof(wsize_5_qty[0]));
-			// memset(wsize_6_qty[count - 1], 0, sizeof(wsize_6_qty[0]));
-			// memset(wsize_7_qty[count - 1], 0, sizeof(wsize_7_qty[0]));
-			// memset(wsize_8_qty[count - 1], 0, sizeof(wsize_8_qty[0]));
-			// memset(wsize_9_qty[count - 1], 0, sizeof(wsize_9_qty[0]));
-			// memset(wsize_10_qty[count - 1], 0, sizeof(wsize_10_qty[0]));
-			// memset(wsize_11_qty[count - 1], 0, sizeof(wsize_11_qty[0]));
-			// memset(wsize_12_qty[count - 1], 0, sizeof(wsize_12_qty[0]));
-			// memset(msize_4_qty[count - 1], 0, sizeof(msize_4_qty[0]));
-			// memset(msize_5_qty[count - 1], 0, sizeof(msize_5_qty[0]));
-			// memset(msize_6_qty[count - 1], 0, sizeof(msize_6_qty[0]));
-			// memset(msize_7_qty[count - 1], 0, sizeof(msize_7_qty[0]));
-			// memset(msize_8_qty[count - 1], 0, sizeof(msize_8_qty[0]));
-			// memset(msize_9_qty[count - 1], 0, sizeof(msize_9_qty[0]));
-			// memset(msize_10_qty[count - 1], 0, sizeof(msize_10_qty[0]));
+			// I didn't fully read the documentation so i thought the function accepts 4 bytes but i was wrong it only accepts 1 byte
+			memset(wsize_5_qty[count - 1], 0, sizeof(wsize_5_qty[0]));
+			memset(wsize_6_qty[count - 1], 0, sizeof(wsize_6_qty[0]));
+			memset(wsize_7_qty[count - 1], 0, sizeof(wsize_7_qty[0]));
+			memset(wsize_8_qty[count - 1], 0, sizeof(wsize_8_qty[0]));
+			memset(wsize_9_qty[count - 1], 0, sizeof(wsize_9_qty[0]));
+			memset(wsize_10_qty[count - 1], 0, sizeof(wsize_10_qty[0]));
+			memset(wsize_11_qty[count - 1], 0, sizeof(wsize_11_qty[0]));
+			memset(wsize_12_qty[count - 1], 0, sizeof(wsize_12_qty[0]));
+			memset(msize_4_qty[count - 1], 0, sizeof(msize_4_qty[0]));
+			memset(msize_5_qty[count - 1], 0, sizeof(msize_5_qty[0]));
+			memset(msize_6_qty[count - 1], 0, sizeof(msize_6_qty[0]));
+			memset(msize_7_qty[count - 1], 0, sizeof(msize_7_qty[0]));
+			memset(msize_8_qty[count - 1], 0, sizeof(msize_8_qty[0]));
+			memset(msize_9_qty[count - 1], 0, sizeof(msize_9_qty[0]));
+			memset(msize_10_qty[count - 1], 0, sizeof(msize_10_qty[0]));
 
 			printf("Successfully Deleted %s records in the Inventory!", temp);
 			system("pause");
@@ -375,30 +391,30 @@ void Records()
 			system("cls");
 			Sleep(1000);
 			printf("\t\t\t***** INVENTORY *****\n");
-			printf("-------------------------------------------------------------------------------------\n");
-			printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
-			printf("-------------------------------------------------------------------------------------\n");
+			printf("--------------------------------------------------------------------------------\n");
+			printf("\tID\t|\tNAME\t|\tSize\t|\tQUANTITY\n");
+			printf("--------------------------------------------------------------------------------\n");
 	
 			for(i = 0; i < count; i++)
 			{
-				printf("%-4d %-15s\n", brandID[i], brandName[i]);
+				printf("\t%-8d\t%-25s\n", brandID[i], brandName[i]);
 
-				printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
-	
-				printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
+				printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 4, msize_4_qty[i]);
+				printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 5, msize_5_qty[i]);
+				printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 6, msize_6_qty[i]);
+				printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 7, msize_7_qty[i]);
+				printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 8, msize_8_qty[i]);
+				printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 9, msize_9_qty[i]);
+				printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 10, msize_10_qty[i]);
+
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 5, wsize_5_qty[i]);
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 6, wsize_6_qty[i]);
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 7, wsize_7_qty[i]);
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 8, wsize_8_qty[i]);
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 9, wsize_9_qty[i]);
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 10, wsize_10_qty[i]);
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 11, wsize_11_qty[i]);
+				printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 12, wsize_12_qty[i]);
 			}
 			system("pause");
 			Records();
@@ -463,7 +479,7 @@ void Search(char brandString[])
 	
 	int i;
 	int found = false;
-	int location;
+	int location = 0;
 
 	if(compare(brandString) == true)
 		found = true;
@@ -471,29 +487,30 @@ void Search(char brandString[])
 	if(found == true)
 	{
 		location = stringlocator(brandString);
+
 		system("cls");
 		Sleep(1000);
 		printf("\t\t\t***** INVENTORY *****\n");
-		printf("-------------------------------------------------------------------------------------\n");
-		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
-		printf("-------------------------------------------------------------------------------------\n");
-		printf("%-4d %-15s\n", brandID[location], brandName[location]);
-		printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[location - 1]);
-		printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[location - 1]);
-		printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[location - 1]);
-		printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[location - 1]);
-		printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[location - 1]);
-		printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[location - 1]);
-		printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[location - 1]);
+		printf("--------------------------------------------------------------------------------\n");
+		printf("\tID\t|\tNAME\t|\tSize\t|\tQUANTITY\n");
+		printf("--------------------------------------------------------------------------------\n");
+		printf("\t%-8d\t%-25s\n", brandID[location - 1], brandName[location - 1]);
+		printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 4, msize_4_qty[location - 1]);
+		printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 5, msize_5_qty[location - 1]);
+		printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 6, msize_6_qty[location - 1]);
+		printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 7, msize_7_qty[location - 1]);
+		printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 8, msize_8_qty[location - 1]);
+		printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 9, msize_9_qty[location - 1]);
+		printf("\t\t\t\t\tMen-%-5d\t%-5d\n", 10, msize_10_qty[location - 1]);
 
-		printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[location - 1]);
-		printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[location - 1]);
-		printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[location - 1]);
-		printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[location - 1]);
-		printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[location - 1]);
-		printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[location - 1]);
-		printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[location - 1]);
-		printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 5, wsize_5_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 6, wsize_6_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 7, wsize_7_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 8, wsize_8_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 9, wsize_9_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 10, wsize_10_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 11, wsize_11_qty[location - 1]);
+		printf("\t\t\t\t\tWomen-%-5d\t%-5d\n", 12, wsize_12_qty[location - 1]);
 		system("pause");
 	}
 	else
@@ -507,6 +524,8 @@ void Search(char brandString[])
 void ReadTxtFile()
 {
 	char buffer;
+
+	int i;
 
 	FILE* fileptr;
 	fileptr = fopen("Logs\\records.txt", "r");
@@ -523,15 +542,60 @@ void ReadTxtFile()
 
 	fclose(fileptr);
 
-	system("pause");
-	
+	printf("\n\n");
+
+	for(i = 5; i >= 0; i--)
+	{
+		if(i >= 1)
+			printf("\rRedirecting to Records Menu in %d second");
+		else
+			printf("\rRedirecting to Records Menu in %d seconds");
+		Sleep(1000);
+	}
+
+	fflush(stdout);
+	fflush(stdin);
 	Records();
 }
 
-// void WriteFile()
-// {
-// 	//something ..
-// }
+void WritesFile()
+{
+	FILE* fileptr;
+	fileptr = fopen("Logs\\records.txt", "w");
+
+	int size, count = temporarySize, i;
+
+	if(NULL != fileptr)
+	{
+		fprintf(fileptr, "\t\t\t***** INVENTORY *****\n");
+		fprintf(fileptr, "--------------------------------------------------------------------------------\n");
+		fprintf(fileptr, "\tID\t|\tNAME\t|\tSize\t|\tQUANTITY\n");
+		fprintf(fileptr, "--------------------------------------------------------------------------------\n");
+
+		for(i = 0; i < count; i++)
+		{
+			fprintf(fileptr, "\t%-8d\t%-25s\n", brandID[i], brandName[i]);
+
+			fprintf(fileptr, "\t\t\t\t\tMen-%-5d\t%-5d\n", 4, msize_4_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tMen-%-5d\t%-5d\n", 5, msize_5_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tMen-%-5d\t%-5d\n", 6, msize_6_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tMen-%-5d\t%-5d\n", 7, msize_7_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tMen-%-5d\t%-5d\n", 8, msize_8_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tMen-%-5d\t%-5d\n", 9, msize_9_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tMen-%-5d\t%-5d\n", 10, msize_10_qty[i]);
+
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 5, wsize_5_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 6, wsize_6_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 7, wsize_7_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 8, wsize_8_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 9, wsize_9_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 10, wsize_10_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 11, wsize_11_qty[i]);
+			fprintf(fileptr, "\t\t\t\t\tWomen-%-5d\t%-5d\n", 12, wsize_12_qty[i]);
+		}
+	}
+	fclose(fileptr);
+}
 
 int compare(char stringName[])
 {
