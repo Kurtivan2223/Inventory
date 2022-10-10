@@ -352,7 +352,30 @@ void Search(char array[], char brandName)
 	
 	if(found == true)
 	{
-		for(
+		system("cls");
+		Sleep(1000);
+		printf(" ***** INVENTORY *****\n");
+		printf("------------------------------------------------------------------\n");
+		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
+		printf("------------------------------------------------------------------\n");
+		printf("%-4d %-15s\n", brandID[location], brandName[location]);
+		printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[location]);
+		printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[location]);
+		printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[location]);
+		printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[location]);
+		printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[location]);
+		printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[location]);
+		printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[location]);
+
+		printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[location]);
+		printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[location]);
+		system("pause");
 	}
 	else
 	{
