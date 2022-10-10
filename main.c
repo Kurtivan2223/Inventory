@@ -270,49 +270,49 @@ void Records()
         switch(option)
         {
         case 1:
-            system("cls");
-            Sleep(1000);
-            printf(" ***** INVENTORY *****\n");
-            printf("------------------------------------------------------------------\n");
-    		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
-   			printf("------------------------------------------------------------------\n");
+		system("cls");
+		Sleep(1000);
+		printf(" ***** INVENTORY *****\n");
+		printf("------------------------------------------------------------------\n");
+		printf("ID\t|\tNAME\t|\t\t\tSize\t|\tQUANTITY \n");
+		printf("------------------------------------------------------------------\n");
 
-   			int tempBrand = sizeof(brandID) / sizeof(brandID[0]);
+		int tempBrand = sizeof(brandID) / sizeof(brandID[0]);
 
-   			for(i = 0; i < tempBrand; i++)
-   			{
-   				printf("%-4d %-15s\n", brandID[i], brandName[i]);
+		for(i = 0; i < tempBrand; i++)
+		{
+			printf("%-4d %-15s\n", brandID[i], brandName[i]);
 
-				printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
-				printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
+			printf("\t\tMen: %-5d %-5d\n", 4, msize_4_qty[i]);
+			printf("\t\tMen: %-5d %-5d\n", 5, msize_5_qty[i]);
+			printf("\t\tMen: %-5d %-5d\n", 6, msize_6_qty[i]);
+			printf("\t\tMen: %-5d %-5d\n", 7, msize_7_qty[i]);
+			printf("\t\tMen: %-5d %-5d\n", 8, msize_8_qty[i]);
+			printf("\t\tMen: %-5d %-5d\n", 9, msize_9_qty[i]);
+			printf("\t\tMen: %-5d %-5d\n", 10, msize_10_qty[i]);
 
-				printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
-				printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
-   			}
-   			system("pause");
-            Records();
-            break;
+			printf("\t\tWomen: %-5d %-5d\n", 5, wsize_5_qty[i]);
+			printf("\t\tWomen: %-5d %-5d\n", 6, wsize_6_qty[i]);
+			printf("\t\tWomen: %-5d %-5d\n", 7, wsize_7_qty[i]);
+			printf("\t\tWomen: %-5d %-5d\n", 8, wsize_8_qty[i]);
+			printf("\t\tWomen: %-5d %-5d\n", 9, wsize_9_qty[i]);
+			printf("\t\tWomen: %-5d %-5d\n", 10, wsize_10_qty[i]);
+			printf("\t\tWomen: %-5d %-5d\n", 11, wsize_11_qty[i]);
+			printf("\t\tWomen: %-5d %-5d\n", 12, wsize_12_qty[i]);
+		}
+		system("pause");
+		Records();
+		break;
         case 2:
-            system("cls");
-            Sleep(1000);
-            ReadFile();
-            break;
+		system("cls");
+		Sleep(1000);
+		ReadFile();
+		break;
         case 3:
-            system("cls");
-            Sleep(1000);
-            Menu();
-            break;
+		system("cls");
+		Sleep(1000);
+		Menu();
+		break;
         default:
             system("cls");
             printf("There is no such Option!\n");
@@ -325,11 +325,10 @@ void Records()
     }
     while(option != 3);
 }
-void Search(char array[], char brandName)
+void Search()
 {
 	int i;
-	int size = sizeof(array) / sizeof(array[0]);
-	
+	int size = sizeof(brandID) / sizeof(brandID[0]);
 	//bool
 	int found = false;
 	
