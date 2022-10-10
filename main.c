@@ -325,11 +325,42 @@ void Records()
     }
     while(option != 3);
 }
-
-void Search()
+void Search(char array[], char brandName)
 {
 	int i;
+	int size = sizeof(array) / sizeof(array[0]);
+	
+	//bool
+	int found = false;
+	
+	int location;
+	
+	for(i = 0; i < size; i++)\
+	{
+		if(strcmp(array[i], brandName) == 0)
+		{
+			found = true;
+			location = i;
+		}
+		else
+		{
+			found = false;
+			location = -1;
+		}
+	}
+	
+	
+	if(found == true)
+	{
+		for(
+	}
+	else
+	{
+		printf("There is no such Brand!");
+		Sleep(5000);
+	}
 }
+
 
 void ReadFile()
 {
