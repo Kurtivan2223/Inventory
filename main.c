@@ -11,6 +11,7 @@
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
 
+//Global Variables
 int ID;
 int brandID[20];
 char brandName[20][20];
@@ -34,16 +35,19 @@ int msize_8_qty[20];
 int msize_9_qty[20];
 int msize_10_qty[20];
 
-void Loading();
-void Menu();
-void AddItems();
-void DeleteItem();
-void Records();
-void Search();
-void ReadFile();
-void WriteFile();
-void Exit();
+//Declared user defined functions
+void Loading(); //done
+void Menu(); // done
+void AddItems(); // done
+void DeleteItem(); // done
+void Records(); // done
+void searchMenu(); //pending
+void Search(); // done
+void ReadFile(); // done
+void WriteFile(); //pending
+void Exit(); // done
 
+//main function
 int main(int argc, char** argv[])
 {
 	Loading();
@@ -51,6 +55,7 @@ int main(int argc, char** argv[])
 	return 0;
 }
 
+//loading screen
 void Loading()
 {
     int i;
@@ -71,6 +76,7 @@ void Loading()
     Menu();
 }
 
+//Menu screen
 void Menu()
 {
     int option, i;
@@ -117,6 +123,7 @@ void Menu()
     while(option != 3);
 }
 
+//Add Item Screen
 void AddItems()
 {
 	int i, n, tempID;
@@ -325,8 +332,15 @@ void Records()
     }
     while(option != 3);
 }
+
+void searchMenu()
+{
+	
+}
+
 void Search()
 {
+	
 	int i;
 	int size = sizeof(brandID) / sizeof(brandID[0]);
 	//bool
@@ -406,7 +420,7 @@ void ReadFile()
 
 void WriteFile()
 {
-	//
+	//something ..
 }
 
 void Exit()
