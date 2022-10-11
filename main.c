@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define and &&
+#define or ||
 #define true 1
 #define false 0
 #define EXIT_FAILURE 1
@@ -335,7 +337,19 @@ void Records()
 
 void searchMenu()
 {
+	char option = 'Y';
 	
+	do
+	{
+		scanf("%c", &option);
+		fflush(stdin);
+		if(option == 'N' or option == 'n')
+		{
+			Sleep(5000);
+			Menu();
+		}
+	}
+	while(option == 'Y' or option == 'y');
 }
 
 void Search()
