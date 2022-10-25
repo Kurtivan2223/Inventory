@@ -600,6 +600,8 @@ void insertAnyLocation()
 		fflush(stdin);
 		printf("Location: ");
 		scanf("%d", &location);
+		
+		location -= 1;
 
 		memmove(brandName[location + 1], brandName[location], (size - location) * sizeof(brandName[0]));
 
@@ -607,6 +609,7 @@ void insertAnyLocation()
 
 		for(i = size - 1; i >= location - 1; i--)
 		{
+			brandID[i] = brandID[i - 1];
 			wsize_5_qty[i] = wsize_5_qty[i - 1];
 			wsize_6_qty[i] = wsize_6_qty[i - 1];
 			wsize_7_qty[i] = wsize_7_qty[i - 1];
@@ -641,7 +644,7 @@ insertids:
 				goto insertids;
 			}
 		}
-		brandID[location - 1] = tempID;
+		brandID[location] = tempID;
 insertnames:
 		fflush(stdin);
 		printf("Brand name: ");
@@ -665,67 +668,67 @@ insertnames:
 			goto insertnames;
 		}
 
-		strcpy(brandName[location - 1], temp);
+		strcpy(brandName[location], temp);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 5: ");
-		scanf("%d", &wsize_5_qty[location - 1]);
+		scanf("%d", &wsize_5_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 6: ");
-		scanf("%d", &wsize_6_qty[location - 1]);
+		scanf("%d", &wsize_6_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 7: ");
-		scanf("%d", &wsize_7_qty[location - 1]);
+		scanf("%d", &wsize_7_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 8: ");
-		scanf("%d", &wsize_8_qty[location - 1]);
+		scanf("%d", &wsize_8_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 9: ");
-		scanf("%d", &wsize_9_qty[location - 1]);
+		scanf("%d", &wsize_9_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 10: ");
-		scanf("%d", &wsize_10_qty[location - 1]);
+		scanf("%d", &wsize_10_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 11: ");
-		scanf("%d", &wsize_11_qty[location - 1]);
+		scanf("%d", &wsize_11_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Women Size 12: ");
-		scanf("%d", &wsize_12_qty[location - 1]);
+		scanf("%d", &wsize_12_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 4: ");
-		scanf("%d", &msize_4_qty[location - 1]);
+		scanf("%d", &msize_4_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 5: ");
-		scanf("%d", &msize_5_qty[location - 1]);
+		scanf("%d", &msize_5_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 6: ");
-		scanf("%d", &msize_6_qty[location - 1]);
+		scanf("%d", &msize_6_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 7: ");
-		scanf("%d", &msize_7_qty[location - 1]);
+		scanf("%d", &msize_7_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 8: ");
-		scanf("%d", &msize_8_qty[location - 1]);
+		scanf("%d", &msize_8_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 9: ");
-		scanf("%d", &msize_9_qty[location - 1]);
+		scanf("%d", &msize_9_qty[location]);
 
 		fflush(stdin);
 		printf("Enter Quantity for Men Size 10: ");
-		scanf("%d", &msize_10_qty[location - 1]);
+		scanf("%d", &msize_10_qty[location]);
 
 		temporarySize += 1;
 		WritesFile();
